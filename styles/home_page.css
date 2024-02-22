@@ -1,0 +1,478 @@
+html, body {
+    background-color: #F4F7FB;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: Inter, serif;
+    scroll-behavior: smooth;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    display: flex;
+}
+
+label.logo {
+    font-size: 2em;
+    color: #F6557E;
+    font-family: "Bodoni 72 Oldstyle", serif;
+}
+
+ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+ul li a {
+    text-decoration: none;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    padding: 0.5em 1.5em .5em 1.5em;
+    border: #F6557E 1px solid;
+    border-radius: 20px;
+    color: #F6557E;
+}
+
+ul li a:hover {
+    background-color: #FEEEF2;
+    transition: 0.5s ease-in-out;
+}
+
+nav {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    display: flex;
+    background-color: #F4F7FB;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container .about-section {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+.container .about-section .about-image img {
+    border-radius: 50%;
+}
+
+.container .about-section .about-details .title-1 {
+    font-size: 30px;
+}
+
+.container .about-section .about-details .title-2 {
+    font-size: 50px;
+    font-weight: bold;
+    background: -webkit-linear-gradient(45deg, #f8a774 30%, #f6567e 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.container .about-section .about-details .title-3 {
+    font-size: 25px;
+}
+
+.container .about-section .about-details .title-3 .border-bottom {
+    border-bottom: 2px solid #F47979;
+    border-bottom-width: 5px;
+    width: 5%;
+    bottom: 0;
+}
+
+.container .about-section .about-details .title-4 {
+    font-size: 30px;
+    width: 35%;
+    font-weight: bold;
+}
+
+.container .about-section .about-details .bio-summary {
+    font-size: 20px;
+    width: 70%;
+    color: #707173;
+}
+
+.container .about-section .about-details .bio-social {
+    display: flex;
+    gap: 10px;
+    color: #F6557E;
+}
+
+.container .experience-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    font-size: 20px;
+    gap: 100px;
+}
+
+.container .experience-section .border-bottom {
+    border-bottom: 2px solid #F47979;
+    border-bottom-width: 5px;
+    width: 10%;
+    padding-top: 10px;
+    bottom: 0;
+}
+
+.container .experience-section .request-title {
+    font-size: 25px;
+    color: #707173;
+}
+
+.container .experience-section .request-message .email {
+}
+
+.container .experience-section .request-title-1 {
+    font-size: 30px;
+}
+
+.container .experience-section .request-title-2 {
+    font-size: 25px;
+    color: #707173;
+}
+
+.container .experience-section .request-title-3 {
+    font-size: 30px;
+}
+
+.container .experience-section .experiences {
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .experience-section .experiences .years {
+    display: flex;
+    gap: 10px;
+}
+
+.container .experience-section .experiences .years .title {
+    color: #F6557E;
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.container .experience-section .experiences .years .sub-title {
+    color: #707173;
+    width: 40%;
+}
+
+.container .experience-section .experiences .projects {
+    display: flex;
+    gap: 10px;
+}
+
+.container .experience-section .experiences .projects .title {
+    color: #F6557E;
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.container .experience-section .experiences .projects .sub-title {
+    color: #707173;
+    width: 40%;
+}
+
+.container .skills-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 50px;
+}
+
+.container .skills-section .skills-title {
+    font-size: 50px;
+    font-weight: bold;
+    background: -webkit-linear-gradient(45deg, #f8a774 30%, #f6567e 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.container .skills-section .skills-items {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.container .skills-section .skills-items .skills-icon {
+    color: #F6557E;
+}
+
+.container .skills-section .skills-items .skills-item-title {
+    color: #F6557E;
+    font-size: 50px;
+}
+
+.container .skills-section .skills-items .skills-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.container .skills-section .skills-items .skills-item .skills-desc {
+    color: #707173;
+    font-size: 20px;
+    text-align: justify;
+}
+
+.container .work-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container .work-section .work-category-icon {
+    display: flex;
+    gap: 10px;
+}
+
+.container .work-section .work-category-icon .work-category-one {
+    padding: 1em;
+    background: white;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.container .work-section .work-title {
+    background: -webkit-linear-gradient(45deg, #f8a774 30%, #f6567e 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.container .work-section .work-items {
+    display: flex;
+    align-items: center;
+}
+
+.container .work-section .work-items .work-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .work-section .work-items .work-item .project-title {
+    padding: 1em;
+    background: white;
+    border-radius: 20px;
+}
+
+.container .work-section .work-items .work-item img {
+    height: 100%;
+    width: 100%;
+}
+
+.container .blog-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    gap: 30px;
+    justify-content: center;
+}
+
+.container .blog-section .blog-section-title {
+    font-size: 50px;
+    font-weight: bold;
+    background: -webkit-linear-gradient(45deg, #f8a774 30%, #f6567e 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.container .blog-section .blog-section-items {
+    display: flex;
+    gap: 30px;
+}
+
+.container .blog-section .blog-section-items .blog-section-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.container .blog-section .blog-section-items .blog-section-article-title {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: justify;
+}
+
+.container .blog-section .blog-section-items .blog-section-article-subtitle {
+    font-size: 20px;
+    color: #707173;
+    text-align: justify;
+}
+
+.container .blog-section .blog-section-items .readButton {
+    display: flex;
+    justify-content: right;
+}
+
+.container .blog-section .blog-section-items .readButton .read {
+    font-size: 18px;
+    padding: 5px 20px 5px 20px;
+    background: #F6557E;
+    color: #FEEEF2;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container .blog-section .blog-section-items img {
+    height: 100%;
+    width: 100%;
+}
+
+.container .contact-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    font-size: 20px;
+}
+
+.container .contact-section .contact-section-details .contact-section-one {
+    font-weight: bold;
+    font-size: 50px;
+    background: -webkit-linear-gradient(45deg, #f8a774 30%, #f6567e 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.container .contact-section .contact-section-details .contact-section-two {
+    font-weight: bold;
+}
+
+.container .contact-section .contact-section-details .contact-section-three, .contact-section-four {
+    color: #707173;
+    font-size: 30px;
+}
+
+.container .contact-section .contact-section-form .contact-section-form-title {
+    font-weight: bold;
+    color: #707173;
+}
+
+.container .contact-section .contact-section-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #F6557E;
+    gap: 20px;
+    width: 50%;
+}
+
+.container .contact-section .contact-section-form .border-bottom {
+    border-bottom: 2px solid #F47979;
+    border-bottom-width: 5px;
+    width: 5%;
+    bottom: 0;
+}
+
+.container .contact-section .contact-section-form .contact-form .email-input #email {
+    width: 90%;
+    height: 30px;
+    margin: 8px 0;
+}
+
+.container .contact-section .contact-section-form .contact-form .message-input #message {
+    width: 90%;
+    margin: 8px 0;
+}
+
+.container .contact-section .contact-section-form .contact-form button {
+    width: 91%;
+    padding: 10px;
+    background: #F6557E;
+    color: white;
+    border: none;
+}
+
+.experience-section .email {
+    display: flex;
+    gap: 0.5em;
+    color: #F6557E;
+}
+
+/*Article page*/
+.article-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.article-page .thumbnail {
+    display: flex;
+    height: 50vh;
+}
+
+.article-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    font-size: 20px;
+}
+
+.article-page .article-body {
+    text-align: justify;
+    width: 80%;
+}
+
+.article-page .article-title {
+    font-weight: bold;
+    width: 80%;
+}
+
+.article-container .contact-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 20px;
+    color: #F6557E;
+    gap: 20px;
+    width: 50%;
+}
+
+.article-container .contact-section .contact-section-form .border-bottom {
+    border-bottom: 2px solid #F47979;
+    border-bottom-width: 5px;
+    width: 5%;
+    bottom: 0;
+}
+
+.article-container .contact-section .contact-section-form .contact-form .email-input #email {
+    width: 90%;
+    height: 30px;
+    margin: 10px 0;
+}
+
+.article-container .contact-section .contact-section-form .contact-form .message-input #message {
+    width: 90%;
+    margin: 8px 0;
+}
+
+.article-container .contact-section .contact-section-form .contact-form button {
+    width: 91%;
+    padding: 10px;
+    background: #F6557E;
+    color: white;
+    border: none;
+}
+
+.article-container .contact-section .contact-section-form .contact-section-form-title {
+    font-weight: bold;
+    color: #707173;
+}
