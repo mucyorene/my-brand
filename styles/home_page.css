@@ -6,6 +6,74 @@ html, body {
     scroll-behavior: smooth;
 }
 
+dialog::backdrop {
+    background: rgb(0, 0, 0, 40%);
+    border: none;
+}
+
+dialog {
+    border: none;
+    border-radius: 10px;
+    height: 50%;
+    width: 60%;
+    background: #FFFFFF;
+}
+
+.login-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.login-modal .modal-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login-modal .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-top: 5%;
+}
+
+.login-modal .login-form .email-group, .password-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.login-modal .login-form .input-label {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.login-modal .login-form .form-input {
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: #F4F7FB;
+    font-size: 13px;
+    padding: 5px;
+}
+
+.login-modal .login-form .loginButton {
+    display: flex;
+    justify-content: right;
+}
+
+.login-modal .login-form .loginButton .login {
+    font-size: 13px;
+    padding: 5px 20px 5px 20px;
+    background: #F6557E;
+    color: #FEEEF2;
+    border-radius: 30px;
+    border: none;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -122,9 +190,6 @@ nav {
 .container .experience-section .request-title {
     font-size: 25px;
     color: #707173;
-}
-
-.container .experience-section .request-message .email {
 }
 
 .container .experience-section .request-title-1 {
