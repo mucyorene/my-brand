@@ -572,3 +572,20 @@ nav {
     border: #cccdd0 1px solid;
     border-radius: 5px;
 }
+.menuIcon{
+    display: none;
+}
+/*Tables and under*/
+@media (max-width: 768px) {
+    .links {
+        display: none;
+    }
+    .menuIcon{
+        display: block;
+    }
+}
+
+/*Mobile*/
+@media (max-width: 500px) {
+
+}
