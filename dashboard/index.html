@@ -3,19 +3,545 @@
 <head>
     <meta charset="UTF-8">
     <title>MY BRAND - Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-<main class="main">
-    <header>
-        <nav>
-            RM-BRAND
-        </nav>
-        <nav>
-            <div class="avatar">
-                <img src="assets/my-profile.JPG" alt="">
+<div class="container">
+    <aside class="left-nav">
+        <div class="logo">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 256 256">
+                    <path fill="#FFFFFF"
+                          d="M128 20a108 108 0 1 0 108 108A108.12 108.12 0 0 0 128 20m0 192a84 84 0 1 1 84-84a84.09 84.09 0 0 1-84 84"/>
+                </svg>
             </div>
-        </nav>
-    </header>
-</main>
+            <div class="myBrand">
+                RM-BRAND
+            </div>
+        </div>
+        <div class="links">
+            <div class="link-1">
+                <div class="link-item">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <g fill="none" stroke="#FFFFFF" stroke-width="1.5">
+                                <path d="M2.364 12.958c-.38-2.637-.57-3.956-.029-5.083c.54-1.127 1.691-1.813 3.992-3.183l1.385-.825C9.8 2.622 10.846 2 12 2c1.154 0 2.199.622 4.288 1.867l1.385.825c2.3 1.37 3.451 2.056 3.992 3.183c.54 1.127.35 2.446-.03 5.083l-.278 1.937c-.487 3.388-.731 5.081-1.906 6.093C18.276 22 16.553 22 13.106 22h-2.212c-3.447 0-5.17 0-6.345-1.012c-1.175-1.012-1.419-2.705-1.906-6.093z"/>
+                                <path stroke-linecap="round" d="M12 15v3"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div>
+                        <a href="#dashboard">Dashboard</a>
+                    </div>
+                </div>
+                <div class="link-item">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="#FFFFFF"
+                                  d="M7.25 6a.75.75 0 0 0-.75.75v7.5a.75.75 0 0 0 1.5 0v-7.5A.75.75 0 0 0 7.25 6M12 6a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 1.5 0v-4.5A.75.75 0 0 0 12 6m4 .75a.75.75 0 0 1 1.5 0v9.5a.75.75 0 0 1-1.5 0z"/>
+                            <path fill="#FFFFFF"
+                                  d="M3.75 2h16.5c.966 0 1.75.784 1.75 1.75v16.5A1.75 1.75 0 0 1 20.25 22H3.75A1.75 1.75 0 0 1 2 20.25V3.75C2 2.784 2.784 2 3.75 2M3.5 3.75v16.5c0 .138.112.25.25.25h16.5a.25.25 0 0 0 .25-.25V3.75a.25.25 0 0 0-.25-.25H3.75a.25.25 0 0 0-.25.25"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <a href="#project">Project</a>
+                    </div>
+                </div>
+                <div class="link-item">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32">
+                            <path fill="#FFFFFF"
+                                  d="M4 24h10v2H4zm0-6h10v2H4zm22-4H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2M6 6v6h20V6zm20 22h-6a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2m-6-8v6h6v-6z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <a href="#blog-section">Blog</a>
+                    </div>
+                </div>
+                <div class="link-item">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="#FFFFFF"
+                                  d="M4 4h16v12H5.17L4 17.17zm0-2c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm2 10h12v2H6zm0-3h12v2H6zm0-3h12v2H6z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <a href="#message-section">Messages</a>
+                    </div>
+                </div>
+            </div>
+            <div class="link-2">
+                <div class="link-item">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024">
+                            <path fill="#FFFFFF"
+                                  d="m924.8 625.7l-65.5-56c3.1-19 4.7-38.4 4.7-57.8s-1.6-38.8-4.7-57.8l65.5-56a32.03 32.03 0 0 0 9.3-35.2l-.9-2.6a443.74 443.74 0 0 0-79.7-137.9l-1.8-2.1a32.12 32.12 0 0 0-35.1-9.5l-81.3 28.9c-30-24.6-63.5-44-99.7-57.6l-15.7-85a32.05 32.05 0 0 0-25.8-25.7l-2.7-.5c-52.1-9.4-106.9-9.4-159 0l-2.7.5a32.05 32.05 0 0 0-25.8 25.7l-15.8 85.4a351.86 351.86 0 0 0-99 57.4l-81.9-29.1a32 32 0 0 0-35.1 9.5l-1.8 2.1a446.02 446.02 0 0 0-79.7 137.9l-.9 2.6c-4.5 12.5-.8 26.5 9.3 35.2l66.3 56.6c-3.1 18.8-4.6 38-4.6 57.1c0 19.2 1.5 38.4 4.6 57.1L99 625.5a32.03 32.03 0 0 0-9.3 35.2l.9 2.6c18.1 50.4 44.9 96.9 79.7 137.9l1.8 2.1a32.12 32.12 0 0 0 35.1 9.5l81.9-29.1c29.8 24.5 63.1 43.9 99 57.4l15.8 85.4a32.05 32.05 0 0 0 25.8 25.7l2.7.5a449.4 449.4 0 0 0 159 0l2.7-.5a32.05 32.05 0 0 0 25.8-25.7l15.7-85a350 350 0 0 0 99.7-57.6l81.3 28.9a32 32 0 0 0 35.1-9.5l1.8-2.1c34.8-41.1 61.6-87.5 79.7-137.9l.9-2.6c4.5-12.3.8-26.3-9.3-35M788.3 465.9c2.5 15.1 3.8 30.6 3.8 46.1s-1.3 31-3.8 46.1l-6.6 40.1l74.7 63.9a370.03 370.03 0 0 1-42.6 73.6L721 702.8l-31.4 25.8c-23.9 19.6-50.5 35-79.3 45.8l-38.1 14.3l-17.9 97a377.5 377.5 0 0 1-85 0l-17.9-97.2l-37.8-14.5c-28.5-10.8-55-26.2-78.7-45.7l-31.4-25.9l-93.4 33.2c-17-22.9-31.2-47.6-42.6-73.6l75.5-64.5l-6.5-40c-2.4-14.9-3.7-30.3-3.7-45.5c0-15.3 1.2-30.6 3.7-45.5l6.5-40l-75.5-64.5c11.3-26.1 25.6-50.7 42.6-73.6l93.4 33.2l31.4-25.9c23.7-19.5 50.2-34.9 78.7-45.7l37.9-14.3l17.9-97.2c28.1-3.2 56.8-3.2 85 0l17.9 97l38.1 14.3c28.7 10.8 55.4 26.2 79.3 45.8l31.4 25.8l92.8-32.9c17 22.9 31.2 47.6 42.6 73.6L781.8 426zM512 326c-97.2 0-176 78.8-176 176s78.8 176 176 176s176-78.8 176-176s-78.8-176-176-176m79.2 255.2A111.6 111.6 0 0 1 512 614c-29.9 0-58-11.7-79.2-32.8A111.6 111.6 0 0 1 400 502c0-29.9 11.7-58 32.8-79.2C454 401.6 482.1 390 512 390c29.9 0 58 11.6 79.2 32.8A111.6 111.6 0 0 1 624 502c0 29.9-11.7 58-32.8 79.2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <a href="#setting-section">Setting</a>
+                    </div>
+                </div>
+                <div class="link-item">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32">
+                            <path fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M28 16H8m12-8l8 8l-8 8m-9 4H3V4h8"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <a href="../index.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <section class="main" id="dashboard">
+        <div class="main-header">
+            <h3>Dashboard</h3>
+            <h5>Welcome Rene,</h5>
+        </div>
+        <div class="cards">
+            <div class="visits-card">
+                <div class="card-title">
+                    <div>Profile views</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-subtitle">
+                        <div class="number">24</div>
+                    </div>
+                    <div class="stats-graph">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 2048 2048">
+                            <path fill="#5FEF5C"
+                                  d="m1453 499l-90 90l-338-337l-1 1796H896l1-1799l-340 340l-90-90L960 6z"/>
+                        </svg>
+                        5 visits
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div>vs previous 30 days</div>
+                </div>
+            </div>
+            <div class="visits-card">
+                <div class="card-title">
+                    <div>Page interaction</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-subtitle">
+                        <div class="number">215</div>
+                    </div>
+                    <div class="stats-graph-down">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 2048 2048">
+                            <path fill="#F6557E"
+                                  d="m1965 1101l-941 941l-941-941l90-90l787 787V0h128v1798l787-787z"/>
+                        </svg>
+                        17 interaction
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div>vs previous 30 days</div>
+                </div>
+            </div>
+            <div class="visits-card">
+                <div class="card-title">
+                    <div>Written blog</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-subtitle">
+                        <div class="number">12</div>
+                    </div>
+                    <div class="stats-graph">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 2048 2048">
+                            <path fill="#5FEF5C"
+                                  d="m1453 499l-90 90l-338-337l-1 1796H896l1-1799l-340 340l-90-90L960 6z"/>
+                        </svg>
+                        9 visits
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div>vs previous 30 days</div>
+                </div>
+            </div>
+            <div class="visits-card">
+                <div class="card-title">
+                    <div>Messages</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-subtitle">
+                        <div class="number">8</div>
+                    </div>
+                    <div class="stats-graph-down">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 2048 2048">
+                            <path fill="#F6557E"
+                                  d="m1965 1101l-941 941l-941-941l90-90l787 787V0h128v1798l787-787z"/>
+                        </svg>
+                        12 visits
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div>vs previous 30 days</div>
+                </div>
+            </div>
+        </div>
+        <div class="main-message">
+            <div class="recent-title">Recent Message</div>
+            <div class="recent-message">
+                <div class="recent-header">
+                    <div class="user">
+                        USER
+                    </div>
+                    <div class="message-sent">
+                        MESSAGE
+                    </div>
+                    <div>
+                        STATUS
+                    </div>
+                    <div>
+                        TIME
+                    </div>
+                </div>
+                <div class="recent-item">
+                    <div class="user-part">
+                        <div class="avatar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 32 32">
+                                <path fill="#707173"
+                                      d="M16 8a5 5 0 1 0 5 5a5 5 0 0 0-5-5m0 8a3 3 0 1 1 3-3a3.003 3.003 0 0 1-3 3"/>
+                                <path fill="#707173"
+                                      d="M16 2a14 14 0 1 0 14 14A14.016 14.016 0 0 0 16 2m-6 24.377V25a3.003 3.003 0 0 1 3-3h6a3.003 3.003 0 0 1 3 3v1.377a11.899 11.899 0 0 1-12 0m13.993-1.451A5.002 5.002 0 0 0 19 20h-6a5.002 5.002 0 0 0-4.992 4.926a12 12 0 1 1 15.985 0"/>
+                            </svg>
+                        </div>
+                        <div class="">
+                            MUCYO
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet justo metus.
+                        Praesent
+                        congue consequat iaculis. Orci varius natoque penatibus et magnis dis parturient montes,
+                        nascetur
+                        ridiculus mus.
+                    </div>
+                    <div>
+                        Answered
+                    </div>
+                    <div>
+                        10/12/21
+                    </div>
+                </div>
+                <div class="recent-item">
+                    <div class="user-part">
+                        <div class="avatar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 32 32">
+                                <path fill="#707173"
+                                      d="M16 8a5 5 0 1 0 5 5a5 5 0 0 0-5-5m0 8a3 3 0 1 1 3-3a3.003 3.003 0 0 1-3 3"/>
+                                <path fill="#707173"
+                                      d="M16 2a14 14 0 1 0 14 14A14.016 14.016 0 0 0 16 2m-6 24.377V25a3.003 3.003 0 0 1 3-3h6a3.003 3.003 0 0 1 3 3v1.377a11.899 11.899 0 0 1-12 0m13.993-1.451A5.002 5.002 0 0 0 19 20h-6a5.002 5.002 0 0 0-4.992 4.926a12 12 0 1 1 15.985 0"/>
+                            </svg>
+                        </div>
+                        <div class="">
+                            MUCYO
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet justo metus.
+                        Praesent
+                        congue consequat iaculis. Orci varius natoque penatibus et magnis dis parturient montes,
+                        nascetur
+                        ridiculus mus.
+                    </div>
+                    <div>
+                        Answered
+                    </div>
+                    <div>
+                        10/12/21
+                    </div>
+                </div>
+                <div class="recent-item">
+                    <div class="user-part">
+                        <div class="avatar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 32 32">
+                                <path fill="#707173"
+                                      d="M16 8a5 5 0 1 0 5 5a5 5 0 0 0-5-5m0 8a3 3 0 1 1 3-3a3.003 3.003 0 0 1-3 3"/>
+                                <path fill="#707173"
+                                      d="M16 2a14 14 0 1 0 14 14A14.016 14.016 0 0 0 16 2m-6 24.377V25a3.003 3.003 0 0 1 3-3h6a3.003 3.003 0 0 1 3 3v1.377a11.899 11.899 0 0 1-12 0m13.993-1.451A5.002 5.002 0 0 0 19 20h-6a5.002 5.002 0 0 0-4.992 4.926a12 12 0 1 1 15.985 0"/>
+                            </svg>
+                        </div>
+                        <div class="">
+                            MUCYO
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet justo metus.
+                        Praesent
+                        congue consequat iaculis. Orci varius natoque penatibus et magnis dis parturient montes,
+                        nascetur
+                        ridiculus mus.
+                    </div>
+                    <div>
+                        Answered
+                    </div>
+                    <div>
+                        10/12/21
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="project" class="project-section">
+        <div class="main-header">
+            <h3>Project</h3>
+            <h5>Here are project,</h5>
+        </div>
+        <div class="main-message">
+            <div class="add-button">
+                <button class="add-project">Add new</button>
+            </div>
+            <div class="recent-message">
+                <div class="recent-header">
+                    <div class="user">
+                        PROJECT
+                    </div>
+                    <div class="message-sent">
+                        DESCRIPTION
+                    </div>
+                    <div></div>
+                    <div>
+                        LINK
+                    </div>
+                </div>
+                <div class="recent-item">
+                    <div class="user-part">
+                        First web
+                    </div>
+                    <div class="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet justo metus.
+                        Praesent
+                        congue consequat iaculis. Orci varius natoque penatibus et magnis dis parturient montes,
+                        nascetur
+                        ridiculus mus.
+                    </div>
+                    <div class="thumbnail">
+                        <figure>
+                            <img src="assets/blog-images/blogImage.jpg" alt="">
+                        </figure>
+                    </div>
+                    <div>
+                        10/12/21
+                    </div>
+                </div>
+                <div class="recent-item">
+                    <div class="user-part">
+                        First web
+                    </div>
+                    <div class="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet justo metus.
+                        Praesent
+                        congue consequat iaculis. Orci varius natoque penatibus et magnis dis parturient montes,
+                        nascetur
+                        ridiculus mus.
+                    </div>
+                    <div class="thumbnail">
+                        <figure>
+                            <img src="assets/blog-images/blog-tech.jpg" alt="">
+                        </figure>
+                    </div>
+                    <div>
+                        10/12/21
+                    </div>
+                </div>
+                <div class="recent-item">
+                    <div class="user-part">
+                        Second app
+                    </div>
+                    <div class="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet justo metus.
+                        Praesent
+                        congue consequat iaculis. Orci varius natoque penatibus et magnis dis parturient montes,
+                        nascetur
+                        ridiculus mus.
+                    </div>
+                    <div class="thumbnail">
+                        <figure>
+                            <img src="assets/blog-images/blog-art.jpg" alt="">
+                        </figure>
+                    </div>
+                    <div>
+                        10/12/21
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="blog-section">
+        <div class="main-header">
+            <h3>Blogs</h3>
+            <h5>Here are blog,</h5>
+        </div>
+        <div class="main-message">
+            <div class="add-button">
+                <button class="add-project">New blog</button>
+            </div>
+            <div class="recent-message">
+                <div class="recent-header">
+                    <div class="user">
+                        BLOG
+                    </div>
+                    <div class="message-sent">
+                        DESCRIPTION
+                    </div>
+                    <div>
+                        THUMBNAIL
+                    </div>
+                    <div>
+                        LINK
+                    </div>
+                </div>
+                <div class="recent-item">
+                    <div class="user-part">
+                        First web
+                    </div>
+                    <div class="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet justo metus.
+                        Praesent
+                        congue consequat iaculis. Orci varius natoque penatibus et magnis dis parturient montes,
+                        nascetur
+                        ridiculus mus.
+                    </div>
+                    <div class="thumbnail">
+                        <figure>
+                            <img src="assets/blog-images/blogImage.jpg" alt="">
+                        </figure>
+                    </div>
+                    <div>
+                        10/12/21
+                    </div>
+                </div>
+                <div class="recent-item">
+                    <div class="user-part">
+                        First web
+                    </div>
+                    <div class="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet justo metus.
+                        Praesent
+                        congue consequat iaculis. Orci varius natoque penatibus et magnis dis parturient montes,
+                        nascetur
+                        ridiculus mus.
+                    </div>
+                    <div class="thumbnail">
+                        <figure>
+                            <img src="assets/blog-images/blog-tech.jpg" alt="">
+                        </figure>
+                    </div>
+                    <div>
+                        10/12/21
+                    </div>
+                </div>
+                <div class="recent-item">
+                    <div class="user-part">
+                        Second app
+                    </div>
+                    <div class="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet justo metus.
+                        Praesent
+                        congue consequat iaculis. Orci varius natoque penatibus et magnis dis parturient montes,
+                        nascetur
+                        ridiculus mus.
+                    </div>
+                    <div class="thumbnail">
+                        <figure>
+                            <img src="assets/blog-images/blog-art.jpg" alt="">
+                        </figure>
+                    </div>
+                    <div>
+                        10/12/21
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="message-section">
+        <div class="main-message">
+            <div class="recent-title">Recent Message</div>
+            <div class="recent-message">
+                <div class="recent-header">
+                    <div class="user">
+                        USER
+                    </div>
+                    <div class="message-sent">
+                        MESSAGE
+                    </div>
+                    <div class="user">
+                        STATUS
+                    </div>
+                    <div class="user">
+                        TIME
+                    </div>
+                </div>
+                <div class="recent-item">
+                    <div class="user-part">
+                        <div class="avatar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 32 32">
+                                <path fill="#707173"
+                                      d="M16 8a5 5 0 1 0 5 5a5 5 0 0 0-5-5m0 8a3 3 0 1 1 3-3a3.003 3.003 0 0 1-3 3"/>
+                                <path fill="#707173"
+                                      d="M16 2a14 14 0 1 0 14 14A14.016 14.016 0 0 0 16 2m-6 24.377V25a3.003 3.003 0 0 1 3-3h6a3.003 3.003 0 0 1 3 3v1.377a11.899 11.899 0 0 1-12 0m13.993-1.451A5.002 5.002 0 0 0 19 20h-6a5.002 5.002 0 0 0-4.992 4.926a12 12 0 1 1 15.985 0"/>
+                            </svg>
+                        </div>
+                        <div class="">
+                            MUCYO
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet justo metus.
+                        Praesent
+                        congue consequat iaculis. Orci varius natoque penatibus et magnis dis parturient montes,
+                        nascetur
+                        ridiculus mus.
+                    </div>
+                    <div class="status">
+                        Pending
+                    </div>
+                    <div class="status">
+                        10/12/21
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="setting-section">
+        <div class="main-header">
+            <h3>Settings</h3>
+            <h5>Edit settings,</h5>
+        </div>
+        <form class="contact-form">
+            <div class="email-input">
+                <div><label>Name</label></div>
+                <div><label>
+                    <input type="text" placeholder="Your name" value="Rene MUCYO">
+                </label></div>
+            </div>
+            <div class="email-input">
+                <div><label>User name</label></div>
+                <div><label>
+                    <input type="text" value="mucyorene" placeholder="example: mucyorene">
+                </label></div>
+            </div>
+            <div class="email-input">
+                <div><label>Email</label></div>
+                <div><label>
+                    <input type="text" value="renemucyo1@gmail.com" placeholder="example@gmail.com">
+                </label></div>
+            </div>
+            <div class="email-input">
+                <div><label>Password</label></div>
+                <div><label>
+                    <input type="password" value="mucyorene" placeholder="example@gmail.com">
+                </label></div>
+            </div>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+    <header class="navigation"></header>
+</div>
 </body>
 </html>

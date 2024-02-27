@@ -2,7 +2,7 @@ html, body {
     background-color: #F4F7FB;
     padding-left: 10px;
     padding-right: 10px;
-    font-family: Inter, serif;
+    font-family: Montserrat, serif;
     scroll-behavior: smooth;
 }
 
@@ -70,6 +70,7 @@ dialog {
     padding: 5px 20px 5px 20px;
     background: #F6557E;
     color: #FEEEF2;
+    text-decoration: none;
     border-radius: 30px;
     border: none;
 }
@@ -83,7 +84,14 @@ ul {
     display: flex;
 }
 
-label.logo {
+#project {
+    grid-column: 2;
+    grid-row: 3;
+    display: grid;
+    background-color: #707173;
+}
+
+label .logo {
     font-size: 2em;
     color: #F6557E;
     font-family: "Bodoni 72 Oldstyle", serif;
@@ -280,6 +288,7 @@ nav {
     flex-direction: column;
     align-items: center;
     gap: 50px;
+    flex: 1;
 }
 
 .container .skills-section .skills-items .skills-item .skills-desc {
@@ -364,6 +373,7 @@ nav {
 .container .blog-section .blog-section-items .blog-section-item {
     display: flex;
     flex-direction: column;
+    flex: 1;
     gap: 10px;
 }
 
@@ -540,4 +550,25 @@ nav {
 .article-container .contact-section .contact-section-form .contact-section-form-title {
     font-weight: bold;
     color: #707173;
+}
+
+.article-container .comments {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    width: 80%;
+}
+
+.article-container .commentator {
+    font-weight: bold;
+    border: none;
+    padding: 5px;
+    background-color: #cccdd0;
+    border-radius: 0 10px 0 0;
+    width: fit-content;
+}
+
+.article-container .comment {
+    border: #cccdd0 1px solid;
+    border-radius: 5px;
 }
