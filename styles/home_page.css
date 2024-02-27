@@ -76,9 +76,13 @@ dialog {
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
 }
+
+/*.container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
 
 ul {
     display: flex;
@@ -572,16 +576,45 @@ nav {
     border: #cccdd0 1px solid;
     border-radius: 5px;
 }
-.menuIcon{
+
+.menuIcon {
     display: none;
 }
+
 /*Tables and under*/
 @media (max-width: 768px) {
     .links {
         display: none;
     }
-    .menuIcon{
+
+    .menuIcon {
         display: block;
+    }
+
+    .container .about-section {
+        flex-direction: column;
+    }
+
+    .about-details {
+        text-align: center;
+    }
+
+    .border-bottom {
+        margin: 0 auto;
+    }
+
+    .bio-summary {
+        text-align: center;
+        margin: 1.5rem auto;
+    }
+
+    .bio-social {
+        justify-content: center;
+    }
+
+    .container .about-section .about-details .title-4 {
+        width: 70%;
+        margin: 1.5rem auto;
     }
 }
 
