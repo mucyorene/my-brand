@@ -418,7 +418,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100vh;
+    /*height: 100vh;*/
     font-size: 20px;
 }
 
@@ -582,8 +582,13 @@ nav {
     display: none;
 }
 
+.blog-section-item-thumbnail figure {
+    margin: 0;
+}
+
 /*Tables and under*/
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {*/
+@media (max-width: 975px) {
     .links {
         display: none;
     }
@@ -721,6 +726,10 @@ nav {
         width: 100%;
         border-radius: 4px;
         border: 1px #ccc solid;
+    }
+
+    .container .contact-section {
+        margin-bottom: 2rem;
     }
 }
 
