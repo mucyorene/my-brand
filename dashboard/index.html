@@ -5,6 +5,12 @@
     <title>MY BRAND - Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
 </head>
+<script>
+
+    const credential = JSON.parse(window.localStorage.getItem("user"))
+    const comments = JSON.parse(window.localStorage.getItem("comments"));
+    console.log(`HERE IS DATA: ${new Date(comments[0].date).getFullYear()}`)
+</script>
 <body>
 <div class="container">
     <aside class="left-nav">
@@ -99,7 +105,9 @@
     <section class="main" id="dashboard">
         <div class="main-header">
             <h3>Dashboard</h3>
-            <h5>Welcome Rene,</h5>
+            <h5>Welcome
+                <script>document.write(credential["names"])</script>
+            </h5>
         </div>
         <div class="cards">
             <div class="visits-card">
@@ -168,14 +176,16 @@
                 </div>
                 <div class="card-body">
                     <div class="card-subtitle">
-                        <div class="number">8</div>
+                        <div class="number">
+                            <script>document.write(comments.length)</script>
+                        </div>
                     </div>
                     <div class="stats-graph-down">
                         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 2048 2048">
                             <path fill="#F6557E"
                                   d="m1965 1101l-941 941l-941-941l90-90l787 787V0h128v1798l787-787z"/>
                         </svg>
-                        12 visits
+                        1 messages
                     </div>
                 </div>
                 <div class="card-footer">
@@ -221,66 +231,10 @@
                         nascetur
                         ridiculus mus.
                     </div>
-                    <div>
+                    <div class="messageStatus">
                         Answered
                     </div>
-                    <div>
-                        10/12/21
-                    </div>
-                </div>
-                <div class="recent-item">
-                    <div class="user-part">
-                        <div class="avatar">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 32 32">
-                                <path fill="#707173"
-                                      d="M16 8a5 5 0 1 0 5 5a5 5 0 0 0-5-5m0 8a3 3 0 1 1 3-3a3.003 3.003 0 0 1-3 3"/>
-                                <path fill="#707173"
-                                      d="M16 2a14 14 0 1 0 14 14A14.016 14.016 0 0 0 16 2m-6 24.377V25a3.003 3.003 0 0 1 3-3h6a3.003 3.003 0 0 1 3 3v1.377a11.899 11.899 0 0 1-12 0m13.993-1.451A5.002 5.002 0 0 0 19 20h-6a5.002 5.002 0 0 0-4.992 4.926a12 12 0 1 1 15.985 0"/>
-                            </svg>
-                        </div>
-                        <div class="">
-                            MUCYO
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet justo metus.
-                        Praesent
-                        congue consequat iaculis. Orci varius natoque penatibus et magnis dis parturient montes,
-                        nascetur
-                        ridiculus mus.
-                    </div>
-                    <div>
-                        Answered
-                    </div>
-                    <div>
-                        10/12/21
-                    </div>
-                </div>
-                <div class="recent-item">
-                    <div class="user-part">
-                        <div class="avatar">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 32 32">
-                                <path fill="#707173"
-                                      d="M16 8a5 5 0 1 0 5 5a5 5 0 0 0-5-5m0 8a3 3 0 1 1 3-3a3.003 3.003 0 0 1-3 3"/>
-                                <path fill="#707173"
-                                      d="M16 2a14 14 0 1 0 14 14A14.016 14.016 0 0 0 16 2m-6 24.377V25a3.003 3.003 0 0 1 3-3h6a3.003 3.003 0 0 1 3 3v1.377a11.899 11.899 0 0 1-12 0m13.993-1.451A5.002 5.002 0 0 0 19 20h-6a5.002 5.002 0 0 0-4.992 4.926a12 12 0 1 1 15.985 0"/>
-                            </svg>
-                        </div>
-                        <div class="">
-                            MUCYO
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet justo metus.
-                        Praesent
-                        congue consequat iaculis. Orci varius natoque penatibus et magnis dis parturient montes,
-                        nascetur
-                        ridiculus mus.
-                    </div>
-                    <div>
-                        Answered
-                    </div>
-                    <div>
+                    <div class="sentDate">
                         10/12/21
                     </div>
                 </div>
