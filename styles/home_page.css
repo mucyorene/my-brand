@@ -95,9 +95,10 @@ ul {
     background-color: #707173;
 }
 
-label .logo {
-    font-size: 2em;
+.logo .text-logo {
     color: #F6557E;
+    text-decoration: none;
+    font-size: 2em;
     font-family: "Bodoni 72 Oldstyle", serif;
 }
 
