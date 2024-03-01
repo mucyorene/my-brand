@@ -2,15 +2,15 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RM Brand</title>
     <link rel="stylesheet" href="styles/home_page.css">
-    <meta name="viewport" content="width=device-width, init-scale=1.0">
 </head>
 <body>
 <main class="container">
     <nav class="navigation">
         <label class="logo">
-            RM-BRAND
+            <a class="text-logo" href="index.html">RM-BRAND</a>
         </label>
         <ul class="links">
             <li><a href="#about-section" id="about">About me</a></li>
@@ -19,9 +19,21 @@
             <li><a href="#work-section" id="work">Work</a></li>
             <li><a href="#contact-section" id="contactMe">Contact</a></li>
             <li><a href="#blog-section" id="blog">Blog</a></li>
-            <li><a href="#" id="login" data-open-modal>Login</a></li>
+            <li><a id="login" data-open-modal>Login</a></li>
         </ul>
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" class="menuIcon">
+
+        <!--        <ul class="links-hidden">-->
+        <!--            <li><a href="#about-section" id="about">About me</a></li>-->
+        <!--            <li><a href="#experience-section" id="experience">Experience</a></li>-->
+        <!--            <li><a href="#skills-section" id="skills">Skills</a></li>-->
+        <!--            <li><a href="#work-section" id="work">Work</a></li>-->
+        <!--            <li><a href="#contact-section" id="contactMe">Contact</a></li>-->
+        <!--            <li><a href="#blog-section" id="blog">Blog</a></li>-->
+        <!--            <li><a href="#" id="login" data-open-modal>Login</a></li>-->
+        <!--        </ul>-->
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" class="menuIcon"
+        >
             <path fill="#F6557E" d="M3 18v-2h18v2zm0-5v-2h18v2zm0-5V6h18v2z"/>
         </svg>
         <dialog data-modal class="modal">
@@ -35,23 +47,29 @@
                         </svg>
                     </div>
                 </div>
-                <div class="login-form">
+                <form id="login-form" class="login-form">
+                    <div id="login-failed"></div>
                     <div class="email-group">
                         <label for="email" class="input-label">Email</label>
-                        <label for="emailD"></label><input id="emailD" type="email" class="form-input"
-                                                           placeholder="example@email.com">
+                        <label for="emailD"></label>
+                        <input id="emailD" type="email" class="form-input"
+                               placeholder="example@email.com" autocomplete="false">
+                        <small></small>
                     </div>
                     <div class="password-group">
                         <div class="email-group">
                             <label for="email" class="input-label">Password</label>
-                            <label for="password"></label><input id="password" type="password" placeholder="Password"
-                                                                 class="form-input">
+                            <label for="password"></label>
+                            <input id="password" type="password" placeholder="Password"
+                                   class="form-input">
+                            <small></small>
                         </div>
                     </div>
                     <div class="loginButton">
-                        <a class="login" href="dashboard/index.html">Sign in</a>
+                        <button class="login" id="loginButton" type="submit">Sign in
+                        </button>
                     </div>
-                </div>
+                </form>
             </div>
         </dialog>
     </nav>
@@ -69,60 +87,6 @@
         })
     </script>
 
-    <!--Mobile navigation-->
-    <!--    <div class="mobile-navigation">-->
-    <!--        <label class="logo">-->
-    <!--            RM-BRAND-->
-    <!--        </label>-->
-    <!--        <ul class="links">-->
-    <!--            <li><a href="#about-section" class="about">About me</a></li>-->
-    <!--            <li><a href="#experience-section" class="experience">Experience</a></li>-->
-    <!--            <li><a href="#skills-section" class="skills">Skills</a></li>-->
-    <!--            <li><a href="#work-section" class="work">Work</a></li>-->
-    <!--            <li><a href="#contact-section" class="contactMe">Contact</a></li>-->
-    <!--            <li><a href="#blog-section" class="blog">Blog</a></li>-->
-    <!--            <li><a href="#" class="login" data-open-modal>Login</a></li>-->
-    <!--        </ul>-->
-    <!--        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" class="menuIcon">-->
-    <!--            <path fill="#F6557E" d="M3 18v-2h18v2zm0-5v-2h18v2zm0-5V6h18v2z"/>-->
-    <!--        </svg>-->
-    <!--        <dialog data-modal class="modal">-->
-    <!--            <div class="login-modal">-->
-    <!--                <div class="modal-header">-->
-    <!--                    <div></div>-->
-    <!--                    <div data-close-modal class="close">-->
-    <!--                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16">-->
-    <!--                            <path fill="#F6557E"-->
-    <!--                                  d="M15.1 3.1L12.9.9L8 5.9L3.1.9L.9 3.1l5 4.9l-5 4.9l2.2 2.2l4.9-5l4.9 5l2.2-2.2l-5-4.9z"/>-->
-    <!--                        </svg>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--                <div class="login-form">-->
-    <!--                    <div class="email-group">-->
-    <!--                        <label for="email" class="input-label">Email</label>-->
-    <!--                        <label for="emailD"></label><label>-->
-    <!--                        <input type="email" class="form-input"-->
-    <!--                               placeholder="example@email.com">-->
-    <!--                    </label>-->
-    <!--                    </div>-->
-    <!--                    <div class="password-group">-->
-    <!--                        <div class="email-group">-->
-    <!--                            <label for="email" class="input-label">Password</label>-->
-    <!--                            <label for="password"></label><label>-->
-    <!--                            <input type="password" placeholder="Password"-->
-    <!--                                   class="form-input">-->
-    <!--                        </label>-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                    <div class="loginButton">-->
-    <!--                        <a class="login" href="dashboard/index.html">Sign in</a>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </dialog>-->
-    <!--    </div>-->
-    <!--    Mobile navigation-->
-
     <section id="about-section" class="about-section">
         <div class="about-details">
             <p class="title-1">Hi, My names are:</p>
@@ -133,7 +97,7 @@
             </div>
             <p class="title-4">Passionate mobile and web app developer in Rwanda,</p>
             <p class="bio-summary">By building UI/UX using top-notch technologies like Flutter for mobile and ReactJS,
-                NodeJS for web frameworks and delivering end-to-end highly optimized, beautiful and performant software
+                Node.js for web frameworks and delivering end-to-end highly optimized, beautiful and performant software
                 products.
             </p>
             <div class="bio-social">
@@ -368,19 +332,202 @@
                 <p>Contact me</p>
                 <div class="border-bottom"></div>
             </div>
-            <form class="contact-form">
+            <form class="contact-form" action="#" id="contactForm" method="POST">
+                <div id="contact-success" style="padding: 1rem 0"></div>
+                <div class="email-input">
+                    <label for="names">Names</label>
+                    <div class="nameClass">
+                        <input type="text" id="names">
+                        <small></small>
+                    </div>
+
+                </div>
                 <div class="email-input">
                     <div><label for="email">Email</label></div>
-                    <div><input type="text" id="email"></div>
+                    <div class="emailClass">
+                        <input type="text" id="email">
+                        <small></small>
+                    </div>
+
                 </div>
                 <div class="message-input">
                     <div><label for="message">Message</label></div>
-                    <div><textarea name="message" id="message" cols="30" rows="10"></textarea></div>
+                    <div class="messageClass">
+                        <textarea id="message" cols="30" rows="10"></textarea>
+                        <small></small>
+                    </div>
+
                 </div>
                 <button type="submit">Send</button>
             </form>
         </div>
     </section>
+    <script>
+        let name = document.querySelector("#names")
+        let email = document.querySelector("#email")
+        let message = document.querySelector("#message")
+        let form = document.querySelector("#contactForm")
+        let validationName = document.querySelector(".nameClass")
+        let validationEmail = document.querySelector(".emailClass")
+        let validationMessage = document.querySelector(".messageClass")
+
+        const isRequired = (value) => value !== "";
+        const maxLength = (value) => (!(value.length < 3 || value.length > 25));
+        const isEmailValid = (email) => {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        };
+        const showErrors = (input, message) => {
+            const parent = input.parentElement
+            parent.classList.add("error")
+            parent.classList.remove("success")
+            const error = parent.querySelector("small")
+            validationName.style = "display:flex;flex-direction:column"
+            validationEmail.style = "display:flex;flex-direction:column"
+            validationMessage.style = "display:flex;flex-direction:column"
+            error.style.color = "red"
+            error.textContent = message
+        }
+        const showSuccess = (input, message) => {
+            const parent = input.parentElement
+            parent.classList.add("success")
+            parent.classList.remove("error")
+            const error = parent.querySelector("small")
+            validationName.style = "display:flex;flex-direction:column"
+            validationEmail.style = "display:flex;flex-direction:column"
+            validationMessage.style = "display:flex;flex-direction:column"
+            error.style.color = "red"
+
+            error.textContent = message
+        }
+
+        const checkNames = () => {
+            let valid = false
+            let nameValue = name.value;
+            if (!maxLength(nameValue)) {
+                showErrors(name, "The minimum length should be 3 and max is 25")
+            } else if (!isRequired(nameValue)) {
+                showErrors(name, "Do not leave it empty")
+            } else {
+                showSuccess(name, "")
+                valid = true
+            }
+            return valid
+        }
+        const checkEmail = () => {
+            let valid = false
+            let emailValue = email.value.trim();
+            if (!isEmailValid(emailValue)) {
+                showErrors(email, "Email is not valid")
+            } else {
+                showSuccess(email, "")
+                valid = true
+            }
+            return valid
+        }
+        const checkMessage = () => {
+            let valid = false
+            let messageValue = message.value.trim();
+            if (!isRequired(messageValue)) {
+                showErrors(message, "Dont leave message field empty")
+            } else {
+                showSuccess(message, "")
+                valid = true
+            }
+            return valid
+        }
+
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault()
+            const comments = JSON.parse(window.localStorage.getItem("comments"));
+            const isFormValid = checkEmail() && checkNames() && checkMessage()
+            let item = comments != null ? comments.length : 0
+
+            if (isFormValid) {
+                let comment = {
+                    "id": ++item,
+                    "name": name.value,
+                    "email": email.value,
+                    "message": message.value,
+                    "status": "Answered",
+                    "date": Date.now()
+                }
+                let commentArr = [];
+                if (!localStorage.getItem('comments')) {
+                    commentArr.push(comment);
+                    localStorage.setItem('comments', JSON.stringify(commentArr));
+                    let success = document.querySelector("#contact-success")
+                    success.textContent = "Your message sent, thanks for interaction"
+                    form.reset()
+                } else {
+                    commentArr = JSON.parse(localStorage.getItem('comments'));
+                    commentArr.push(comment);
+                    localStorage.setItem('comments', JSON.stringify(commentArr));
+                    let success = document.querySelector("#contact-success")
+                    success.style.color = "green"
+                    success.textContent = "Your message sent, thanks for interaction"
+                    form.reset()
+                }
+            }
+        })
+    </script>
+
+    <script>
+        const myProfile = {
+            "names": "Rene MUCYO",
+            "email": "renemucyo1@gmail.com",
+            "password": "Mucyo@12345"
+        }
+        window.localStorage.setItem("user", JSON.stringify(myProfile));
+
+
+        let username = document.querySelector("#emailD")
+        let password = document.querySelector("#password")
+        let loginButton = document.querySelector("#login-form")
+        const isPasswordSecure = (password) => {
+            const re = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/);
+            return re.test(password);
+        };
+        const checkLoginEmail = () => {
+            let valid = false
+            let emailValue = username.value.trim();
+            if (!isEmailValid(emailValue)) {
+                showErrors(username, "Email is not valid for login")
+            } else {
+                showSuccess(username, "")
+                valid = true
+            }
+            return valid
+        };
+        const checkPassword = () => {
+            let valid = false
+            let passwordValue = password.value.trim();
+            if (!isPasswordSecure(passwordValue)) {
+                showErrors(password, "Password is invalid")
+            } else {
+                showSuccess(password, "")
+                valid = true
+            }
+            return valid
+        }
+
+        loginButton.addEventListener("submit", function (e) {
+            e.preventDefault()
+            const isFormValid = checkLoginEmail() && checkPassword()
+            if (isFormValid) {
+                const myCredentials = window.localStorage.getItem("user")
+                const auth = JSON.parse(myCredentials)
+                if (auth["email"] === username.value && auth["password"] === password.value) {
+                    window.location = "http://localhost:63343/my-brand/dashboard/index.html"
+                } else {
+                    const notMatch = document.querySelector("#login-failed")
+                    notMatch.style.color = "red"
+                    notMatch.textContent = "We have not that credentials in database"
+                }
+            }
+        })
+    </script>
 </main>
 </body>
 </html>

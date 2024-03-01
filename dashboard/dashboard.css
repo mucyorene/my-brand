@@ -490,7 +490,7 @@ header {
 }
 
 #message-section .main-message .recent-message .status {
-    text-align: justify;
+    text-align: center;
     flex: .5;
 }
 
@@ -551,4 +551,12 @@ header {
 
 #setting-section .contact-form {
     display: flex;
+}
+.adding {
+    color: #F6557E; !important;
+}
+.containerFetching{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
