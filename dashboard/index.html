@@ -532,10 +532,13 @@
     <header class="navigation"></header>
 </div>
 <script>
+
     const onRecentData = document.querySelector("#onRecent")
+
     let html = "";
     if (comments.length) {
         for (let i = 0; i < comments.length; i++) {
+            const id = comments[i].id;
             const nameElement = comments[i].name;
             const messageElement = `${comments[i].message}`;
             const messageStatus = comments[i].status;
@@ -560,28 +563,13 @@
                         <button style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">
                             Edit
                         </button>
-                        <button style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">
+                        <button onclick="${deleteMessage(id)}" style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">
                             Delete
                         </button>
                     </div>
             </div>`)
 
             onRecentData.innerHTML = html
-            // let pElement = document.createElement('item-username')
-            // let messageElement = document.createElement('span')
-            // let statusElement = document.createElement('span')
-            // let timeElement = document.createElement('span')
-            //
-            // let divContainer = document.getElementsByClassName("recent-item")
-            // pElement.classList.add('adding')
-            // divContainer.classList.add('containerFetching')
-            // pElement.textContent = `${comments[i].name}`;
-            // console.log(pElement)
-            // messageElement.textContent = `${comments[i].message}`;
-            // statusElement.textContent = comments[i].status;
-            // // timeElement.textContent = new Date(comments[i].date);
-            // divContainer.append(pElement, messageElement, statusElement, timeElement)
-            // recentItem[i].appendChild(divContainer)
         }
     }
 </script>

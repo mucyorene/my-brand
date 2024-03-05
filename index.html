@@ -461,6 +461,7 @@
                     success.textContent = "Your message sent, thanks for interaction"
                     form.reset()
                 } else {
+                    console.log(`HERE IS COMMENT: ${comment}`)
                     commentArr = JSON.parse(localStorage.getItem('comments'));
                     commentArr.push(comment);
                     localStorage.setItem('comments', JSON.stringify(commentArr));
