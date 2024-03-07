@@ -222,6 +222,10 @@ header {
     flex: 1;
 }
 
+.main .main-message .recent-header .user {
+    flex: 1;
+}
+
 .main .main-message .recent-message .user-part {
     display: flex;
     gap: 5px;
@@ -552,10 +556,13 @@ header {
 #setting-section .contact-form {
     display: flex;
 }
+
 .adding {
-    color: #F6557E; !important;
+    color: #F6557E;
+!important;
 }
-.containerFetching{
+
+.containerFetching {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
