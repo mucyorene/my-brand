@@ -8,7 +8,23 @@
 <script>
     const credential = JSON.parse(window.localStorage.getItem("user"))
     const comments = JSON.parse(window.localStorage.getItem("comments"));
+    const apiUrl = "https://my-brand-api-t81n.onrender.com"
     // console.log(`HERE IS DATA: ${new Date(comments[0].date).getFullYear()}`)
+
+
+    // Function to fetch articles from the API
+    async function fetchArticles() {
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                throw new Error('Failed to fetch articles');
+            }
+            const data = await response.json();
+            console.log(data)
+        } catch (error) {
+            console.error('Error fetching articles:', error);
+        }
+    }
 
 </script>
 <body>
@@ -357,7 +373,7 @@
         </div>
         <div class="main-message">
             <div class="add-button">
-                <button class="add-project">New blog</button>
+                <a id="articleRegisterModel" data-open-modal class="add-project">New blog</a>
             </div>
             <div class="recent-message">
                 <div class="recent-header">
@@ -599,10 +615,17 @@
 
     function editStatusFunc(id) {
         let indexToUpdate = comments.findIndex((obj) => obj.id === id)
+        let currentStatus = comments[indexToUpdate].status;
         if (indexToUpdate !== -1) {
             comments[indexToUpdate].status = prompt("Write new status:")
-            localStorage.setItem('comments', JSON.stringify(comments));
-            window.location.reload()
+            if (comments[indexToUpdate].status === null) {
+                comments[indexToUpdate].status = currentStatus
+            } else {
+                localStorage.setItem('comments', JSON.stringify(comments));
+                window.location.reload()
+            }
+        } else {
+            let status = comments[indexToUpdate].status
         }
     }
 </script>
