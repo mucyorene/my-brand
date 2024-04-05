@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RM Brand</title>
     <link rel="stylesheet" href="styles/home_page.css">
+    <script>
+        const apiUrl = "https://my-brand-api-t81n.onrender.com/articles"
+    </script>
 </head>
 <body>
 <main class="container">
@@ -284,40 +287,7 @@
             My blog
         </div>
         <div class="blog-section-items">
-            <div class="blog-section-item">
-                <div class="blog-section-item-thumbnail">
-                    <figure>
-                        <img src="assets/assets/blog-images/blogImage.jpg" alt=""/>
-                    </figure>
-                </div>
-                <div class="blog-section-article-title">
-                    AT&T Offers $5 Credit to Customers Affected by Service Outage
-                </div>
-                <div class="blog-section-article-subtitle">
-                    Thousands of customers lost service on Thursday when the telecommunications company ran into
-                    problems while trying to expand its network, the company’s chief executive said.
-                </div>
-                <div class="readButton">
-                    <a href="pages/article_details.html" class="read">Read</a>
-                </div>
-            </div>
-            <div class="blog-section-item">
-                <div class="blog-section-item-thumbnail">
-                    <figure>
-                        <img src="assets/assets/blog-images/blog-tech.jpg" alt=""/>
-                    </figure>
-                </div>
-                <div class="blog-section-article-title">
-                    Florida Passes Sweeping Bill to Keep Young People Off Social Media
-                </div>
-                <div class="blog-section-article-subtitle">
-                    Florida’s Legislature has passed a sweeping social media bill that would make the state the first to
-                    effectively bar young people under 16 from holding accounts on platforms like TikTok and Instagram.
-                </div>
-                <div class="readButton">
-                    <a href="pages/article_details.html" class="read">Read</a>
-                </div>
-            </div>
+
         </div>
     </section>
     <section id="contact-section" class="contact-section">
@@ -438,37 +408,40 @@
         }
 
 
-        form.addEventListener("submit", function (e) {
+        form.addEventListener("submit", async function (e) {
             e.preventDefault()
             const comments = JSON.parse(window.localStorage.getItem("comments"));
             const isFormValid = checkEmail() && checkNames() && checkMessage()
             let item = comments != null ? comments.length : 0
 
             if (isFormValid) {
-                let comment = {
-                    "id": ++item,
-                    "name": name.value,
+                let messageToSent = {
+                    "names": name.value,
                     "email": email.value,
                     "message": message.value,
-                    "status": "Answered",
-                    "date": Date.now()
                 }
-                let commentArr = [];
-                if (!localStorage.getItem('comments')) {
-                    commentArr.push(comment);
-                    localStorage.setItem('comments', JSON.stringify(commentArr));
-                    let success = document.querySelector("#contact-success")
-                    success.textContent = "Your message sent, thanks for interaction"
-                    form.reset()
-                } else {
-                    console.log(`HERE IS COMMENT: ${comment}`)
-                    commentArr = JSON.parse(localStorage.getItem('comments'));
-                    commentArr.push(comment);
-                    localStorage.setItem('comments', JSON.stringify(commentArr));
-                    let success = document.querySelector("#contact-success")
-                    success.style.color = "green"
-                    success.textContent = "Your message sent, thanks for interaction"
-                    form.reset()
+                const url = "https://my-brand-api-t81n.onrender.com/contact/sendMessage"
+                const options = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        // "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify(messageToSent)
+                }
+                try {
+                    const response = await fetch(url, options)
+                    if (!response.ok) {
+                        const error = await response.json()
+                        console.log(error)
+                    }
+                    if (response.ok) {
+                        const data = await response.json()
+                        // localStorage.setItem("token", data.token)
+                        console.log(data)
+                    }
+                } catch (error) {
+                    console.log(error)
                 }
             }
         })
@@ -513,21 +486,85 @@
             return valid
         }
 
-        loginButton.addEventListener("submit", function (e) {
+        loginButton.addEventListener("submit", async function (e) {
             e.preventDefault()
             const isFormValid = checkLoginEmail() && checkPassword()
             if (isFormValid) {
-                const myCredentials = window.localStorage.getItem("user")
-                const auth = JSON.parse(myCredentials)
-                if (auth["email"] === username.value && auth["password"] === password.value) {
-                    window.location = "http://localhost:63343/my-brand/dashboard/index.html"
-                } else {
-                    const notMatch = document.querySelector("#login-failed")
-                    notMatch.style.color = "red"
-                    notMatch.textContent = "We have not that credentials in database"
+                const credentials = {
+                    "email": username.value,
+                    "password": password.value
                 }
+                const url = "https://my-brand-api-t81n.onrender.com/auth/login";
+                console.log(credentials)
+                const options = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        // "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify(credentials)
+                }
+                try {
+                    const response = await fetch(url, options)
+                    if (!response.ok) {
+                        const error = await response.json()
+                        console.log(`HERE IS DATA: ${error}`)
+                    }
+                    if (response.ok) {
+                        const data = await response.json()
+                        console.log(data.token)
+                        localStorage.setItem("token", data.token)
+                        window.location = "https://mucyorene.github.io/my-brand/dashboard/index.html"
+                    }
+                } catch (error) {
+                    console.log("")
+                }
+                // const myCredentials = window.localStorage.getItem("user")
+                // const auth = JSON.parse(myCredentials)
+                // if (auth["email"] === username.value && auth["password"] === password.value) {
+                //     window.location = "http://localhost:63343/my-brand/dashboard/index.html"
+                // } else {
+                //     const notMatch = document.querySelector("#login-failed")
+                //     notMatch.style.color = "red"
+                //     notMatch.textContent = "We have not that credentials in database"
+                // }
             }
         })
+
+    </script>
+    <script>
+        const blogDiv = document.querySelector(".blog-section-items")
+        const fetchBlogs = async () => {
+            const response = await fetch(apiUrl)
+            const data = await response.json()
+            let articles = data.articles
+            let lastTwoArticles = articles.slice(-2)
+            console.log(lastTwoArticles)
+            for (let i = 0; i < lastTwoArticles.length; i++) {
+
+                const blogCard = document.createElement("div")
+                blogCard.classList.add("blog-section-item");
+                blogCard.innerHTML = `
+                <div class="blog-section-item-thumbnail">
+                        <figure>
+                            <img src="assets/assets/blog-images/blogImage.jpg" alt=""/>
+                        </figure>
+                    </div>
+                    <div class="blog-section-article-title">
+                        ${lastTwoArticles[i].title}
+                    </div>
+                    <div class="blog-section-article-subtitle">
+                        ${lastTwoArticles[i].body}
+                    </div>
+                    <div class="readButton">
+                        <a href="pages/article_details.html?id=${lastTwoArticles[i]._id}" class="read">Read</a>
+                    </div>
+                `
+
+                blogDiv.appendChild(blogCard)
+            }
+        }
+        fetchBlogs()
     </script>
 </main>
 </body>
