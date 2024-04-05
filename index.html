@@ -514,7 +514,7 @@
                         const data = await response.json()
                         console.log(data.token)
                         localStorage.setItem("token", data.token)
-                        window.location = "https://mucyorene.github.io/my-brand/dashboard/index.html"
+                        window.location = "https://deploy-preview-2--rene-mucyo-brand.netlify.app/dashboard/index.html"
                     }
                 } catch (error) {
                     console.log("")
@@ -539,7 +539,6 @@
             const data = await response.json()
             let articles = data.articles
             let lastTwoArticles = articles.slice(-2)
-            console.log(lastTwoArticles)
             for (let i = 0; i < lastTwoArticles.length; i++) {
 
                 const blogCard = document.createElement("div")
