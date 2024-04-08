@@ -1,0 +1,7 @@
+<script>
+    const currentUrl = window.location.href;
+    const params = new URLSearchParams(new URL(currentUrl).search);
+    const id = params.get('id');
+    const deleteApi = `https://my-brand-api-t81n.onrender.com/articles/removeSingleArticle/${id}`
+
+</script>

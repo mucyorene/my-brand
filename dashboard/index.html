@@ -510,9 +510,31 @@
 </script>
 <script>
 
-    function deleteMessage(id) {
-        console.log(id)
-        return id;
+    async function deleteMessage(id) {
+        const deleteApi = `https://my-brand-api-t81n.onrender.com/contact/removeContactMessage/${id}`
+        const askUser = confirm("Really want to delete this message ?")
+        if (askUser) {
+            const options = {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+            }
+            const deleteResponse = await fetch(deleteApi, options)
+            if (!deleteResponse.ok) {
+                alert("Not deleted")
+                const deleteError = await deleteResponse.json()
+                console.log(deleteError)
+            }
+            if (deleteResponse.ok) {
+
+                const data = await deleteResponse.json()
+                alert(`${data.messages}`)
+                window.location.reload()
+                console.log(data.messages)
+            }
+        }
     }
 
     function editStatusFunc(id) {
@@ -548,11 +570,10 @@
             const response = await fetch(allMessagesUrl, options);
             if (!response.ok) {
                 console.log(response.json())
-                throw new Error('Failed to fetch articles');
             }
             const data = await response.json();
             let allMessages = data.messages;
-            totalMessage = allMessages;
+            totalMessage = allMessages.reverse();
             console.log(`HERE ARE MESSAGES: ${allMessages.length}`)
             let messages = data.messages.slice(-3).reverse()
             for (let a in allMessages) {
@@ -580,9 +601,9 @@
                         } style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">
                             Edit
                         </button>
-                        <button id="deleteItem" onClick="${deleteMessage(allMessages[a]._id)}" style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">
+                        <a id="deleteItem" onClick="deleteMessage('${allMessages[a]._id}')" style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">
                             Delete
-                        </button>
+                        </a>
                     </div>`
                 onRecentAllMessages.appendChild(allMessageCard)
             }
@@ -649,7 +670,7 @@
             blogDiv.appendChild(blogCard)
         }
     }
-    fetchBlogs()
+    // fetchBlogs()
 </script>
 <script>
     let registerArticle = document.querySelector("#login-form")
