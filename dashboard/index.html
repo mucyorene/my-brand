@@ -401,7 +401,7 @@
                         </div>
                     </div>
                     <div class="saveButton">
-                        <button class="login" id="saveButton" type="submit">Save
+                        <button class="login" id="createArticle" type="submit">Publish
                         </button>
                     </div>
                 </form>
@@ -662,11 +662,15 @@
 </script>
 <script>
     let registerArticle = document.querySelector("#login-form")
+    let feedbackMessage = document.querySelector("#login-failed")
+    let createArticleButton = document.querySelector("#createArticle")
+
     let title = document.querySelector("#articleBody")
     let content = document.querySelector("#blogTitle")
 
     registerArticle.addEventListener("submit", async (event) => {
         event.preventDefault()
+        createArticleButton.innerHTML = "Loading..."
         const article = {
             "title": title.value,
             "body": content.value,
@@ -684,14 +688,31 @@
         try {
             const response = await fetch(createArticleUrl, options)
             if (!response.ok) {
+                feedbackMessage.innerHTML = ""
+                createArticleButton.innerHTML = "Publish"
                 const error = await response.json()
+
+                let failedMessageAlert = document.createElement("div")
+                failedMessageAlert.classList.add("success")
+                failedMessageAlert.style = "color:red;"
+                failedMessageAlert.innerHTML = `<p>${error.message}</p>`
+                feedbackMessage.appendChild(failedMessageAlert)
+
                 console.log(`HERE IS ARTICLE NORMAL ERROR: ${error}`)
             }
             if (response.ok) {
+                feedbackMessage.innerHTML = ""
+                createArticleButton.innerHTML = "Publish"
+                registerArticle.reset()
                 const data = await response.json()
-                console.log(`HERE IS ARTICLE CREATION SUCCESS MESSAGE: ${data.message}`)
+                let successMessageAlert = document.createElement("div")
+                successMessageAlert.classList.add("success")
+                successMessageAlert.style = "color:green;"
+                successMessageAlert.innerHTML = `<p>${data.message}</p>`
+                feedbackMessage.appendChild(successMessageAlert)
             }
         } catch (error) {
+            createArticleButton.innerHTML = "Publish"
             console.log(`Error here in article create: ${error}`)
         }
     })
