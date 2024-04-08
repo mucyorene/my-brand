@@ -60,6 +60,7 @@ dialog {
     padding: 5px;
 }
 
+
 .login-modal .login-form .loginButton {
     display: flex;
     justify-content: right;
@@ -466,6 +467,14 @@ nav {
     width: 90%;
     height: 30px;
     margin: 8px 0;
+}
+
+.contact-form #contentBody {
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 5px;
 }
 
 .container .contact-section .contact-section-form .contact-form .email-input #names {

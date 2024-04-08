@@ -510,16 +510,9 @@
 </script>
 <script>
 
-    function deleteMessage(item) {
-        let indexToRemove = comments.findIndex(function (obj) {
-            return obj.id === item;
-        });
-
-        if (indexToRemove !== -1)
-            comments.splice(indexToRemove, 1);
-        localStorage.setItem('comments', JSON.stringify(comments));
-        window.location.reload()
-        return true;
+    function deleteMessage(id) {
+        console.log(id)
+        return id;
     }
 
     function editStatusFunc(id) {
@@ -587,9 +580,7 @@
                         } style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">
                             Edit
                         </button>
-                        <button id="deleteItem" onClick={
-                            // deleteMessage()
-                        } style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">
+                        <button id="deleteItem" onClick="${deleteMessage(allMessages[a]._id)}" style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">
                             Delete
                         </button>
                     </div>`
@@ -658,7 +649,7 @@
             blogDiv.appendChild(blogCard)
         }
     }
-    // fetchBlogs()
+    fetchBlogs()
 </script>
 <script>
     let registerArticle = document.querySelector("#login-form")
