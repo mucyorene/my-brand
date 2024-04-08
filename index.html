@@ -303,7 +303,7 @@
                 <div class="border-bottom"></div>
             </div>
             <form class="contact-form" action="#" id="contactForm" method="POST">
-                <div id="contact-success" style="padding: 1rem 0"></div>
+                <div id="contact-success" style="padding: 1rem 0;"></div>
                 <div class="email-input">
                     <label for="names">Names</label>
                     <div class="nameClass">
@@ -328,7 +328,7 @@
                     </div>
 
                 </div>
-                <button type="submit">Send</button>
+                <button type="submit" id="sendMessage">Send</button>
             </form>
         </div>
     </section>
@@ -336,7 +336,12 @@
         let name = document.querySelector("#names")
         let email = document.querySelector("#email")
         let message = document.querySelector("#message")
+
+
         let form = document.querySelector("#contactForm")
+        let successMessage = document.querySelector("#contact-success")
+        let sendMessage = document.querySelector("#sendMessage")
+
         let validationName = document.querySelector(".nameClass")
         let validationEmail = document.querySelector(".emailClass")
         let validationMessage = document.querySelector(".messageClass")
@@ -415,6 +420,7 @@
             let item = comments != null ? comments.length : 0
 
             if (isFormValid) {
+                sendMessage.innerHTML = "Loading..."
                 let messageToSent = {
                     "names": name.value,
                     "email": email.value,
@@ -432,15 +438,22 @@
                 try {
                     const response = await fetch(url, options)
                     if (!response.ok) {
+                        sendMessage.innerHTML = "Send"
                         const error = await response.json()
                         console.log(error)
                     }
                     if (response.ok) {
+                        sendMessage.innerHTML = "Send"
                         const data = await response.json()
-                        // localStorage.setItem("token", data.token)
-                        console.log(data)
+                        let successMessageAlert = document.createElement("div")
+                        successMessageAlert.classList.add("success")
+                        successMessageAlert.style = "color:green;"
+                        successMessageAlert.innerHTML = `<p>${data.message}</p>`
+                        form.reset()
+                        successMessage.appendChild(successMessageAlert)
                     }
                 } catch (error) {
+                    sendMessage.innerHTML = "Send"
                     console.log(error)
                 }
             }
