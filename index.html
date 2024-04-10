@@ -286,9 +286,8 @@
         <div class="blog-section-title">
             My blog
         </div>
-        <div class="blog-section-items">
-
-        </div>
+        <div class="network-status"></div>
+        <div class="blog-section-items"></div>
     </section>
     <section id="contact-section" class="contact-section">
         <div class="contact-section-details">
@@ -559,16 +558,28 @@
     </script>
     <script>
         const blogDiv = document.querySelector(".blog-section-items")
+        const networkStatus = document.querySelector(".network-status")
+        networkStatus.style = "font-size:2rem;"
+        networkStatus.textContent = "Waiting..."
         const fetchBlogs = async () => {
-            const response = await fetch(apiUrl)
-            const data = await response.json()
-            let articles = data.articles
-            let lastTwoArticles = articles.slice(-2)
-            for (let i = 0; i < lastTwoArticles.length; i++) {
 
-                const blogCard = document.createElement("div")
-                blogCard.classList.add("blog-section-item");
-                blogCard.innerHTML = `
+            try {
+                const response = await fetch(apiUrl)
+                if (!response.ok) {
+                    networkStatus.style = "display:none"
+                    const data = await response.json()
+                    networkStatus.textContent = data.message
+                }
+                if (response.ok) {
+                    networkStatus.style = "display:none"
+                    const data = await response.json()
+                    let articles = data.articles
+                    let lastTwoArticles = articles.slice(-2)
+                    for (let i = 0; i < lastTwoArticles.length; i++) {
+
+                        const blogCard = document.createElement("div")
+                        blogCard.classList.add("blog-section-item");
+                        blogCard.innerHTML = `
                 <div class="blog-section-item-thumbnail">
                         <figure>
                             <img src="assets/assets/blog-images/blogImage.jpg" alt=""/>
@@ -585,7 +596,13 @@
                     </div>
                 `
 
-                blogDiv.appendChild(blogCard)
+                        blogDiv.appendChild(blogCard)
+                    }
+                }
+            } catch (error) {
+                networkStatus.style = "color:red;background-color:white;font-size:2rem"
+                networkStatus.textContent = error.message
+                console.log(error)
             }
         }
         fetchBlogs()
