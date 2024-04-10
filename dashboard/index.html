@@ -327,134 +327,125 @@
         </div>
     </section>
     <section id="blog-section">
-        <div class="main-header">
-            <h3>Articles</h3>
-            <h5>All articles here,</h5>
-        </div>
+        <div class="recent-title">Articles</div>
         <div class="main-message">
             <div class="add-button">
                 <a id="articleRegisterModel" data-open-modal class="add-project">New blog</a>
             </div>
-            <div class="recent-message" id="list-articles">
-                <div class="recent-header">
-                    <div class="user">
-                        BLOG
-                    </div>
-                    <div class="message-sent">
-                        DESCRIPTION
-                    </div>
-                    <div>
-                        THUMBNAIL
-                    </div>
-                    <div>
-                        LINK
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <dialog data-modal class="modal">
-            <div class="login-modal">
-                <div class="modal-header">
-                    <div></div>
-                    <div data-close-modal class="close">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16">
-                            <path fill="#F6557E"
-                                  d="M15.1 3.1L12.9.9L8 5.9L3.1.9L.9 3.1l5 4.9l-5 4.9l2.2 2.2l4.9-5l4.9 5l2.2-2.2l-5-4.9z"/>
-                        </svg>
-                    </div>
-                </div>
-                <form id="login-form" class="login-form">
-                    <div id="login-failed"></div>
-                    <div class="email-group">
-                        <label for="blogTitle" class="input-label">Title</label>
-                        <label for="blogTitle"></label>
-                        <input id="blogTitle" type="text" class="form-input"
-                               placeholder="Write title" autocomplete="false">
-                        <small></small>
-                    </div>
-                    <div class="password-group">
-                        <div class="email-group">
-                            <label for="articleBody" class="input-label">Content</label>
-                            <label for="articleBody">
-                                <textarea rows="4" cols="4" id="articleBody" class="contentBody"
-                                          placeholder="Write article content here !"></textarea>
-                            </label>
-                            <small></small>
-                        </div>
-                    </div>
-                    <div class="saveButton">
-                        <button class="login" id="createArticle" type="submit">Publish
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </dialog>
-
-        <script>
-            const openButton = document.querySelector("[data-open-modal]")
-            const closeButton = document.querySelector("[data-close-modal]")
-            const modal = document.querySelector("[data-modal]")
-
-            openButton.addEventListener("click", () => {
-                modal.showModal()
-            })
-
-            closeButton.addEventListener("click", () => {
-                modal.close()
-            })
-        </script>
-
-    </section>
-    <section id="message-section">
-        <div class="main-message">
-            <div class="recent-title">All messages</div>
-            <table id="allMessagesSection">
+            <table class="blogs-table">
                 <thead>
-                <td>User</td>
-                <td>Message</td>
-                <td>Status</td>
-                <td>Date</td>
-                <td colspan="2" style="text-align: center">Actions</td>
+                <td>TITLE</td>
+                <td>CONTENT</td>
+                <td>THUMBNAIL</td>
+                <td>CREATED AT</td>
+                <td>UPDATED AT</td>
+                <td colspan="2">ACTIONS</td>
+                <td></td>
                 </thead>
             </table>
         </div>
     </section>
-    <section id="setting-section">
-        <div class="main-header">
-            <h3>Settings</h3>
-            <h5>Edit settings,</h5>
-        </div>
-        <form class="contact-form">
-            <div class="email-input">
-                <div><label>Name</label></div>
-                <div><label>
-                    <input type="text" placeholder="Your name" value="Rene MUCYO">
-                </label></div>
-            </div>
-            <div class="email-input">
-                <div><label>User name</label></div>
-                <div><label>
-                    <input type="text" value="mucyorene" placeholder="example: mucyorene">
-                </label></div>
-            </div>
-            <div class="email-input">
-                <div><label>Email</label></div>
-                <div><label>
-                    <input type="text" value="renemucyo1@gmail.com" placeholder="example@gmail.com">
-                </label></div>
-            </div>
-            <div class="email-input">
-                <div><label>Password</label></div>
-                <div><label>
-                    <input type="password" value="mucyorene" placeholder="example@gmail.com">
-                </label></div>
-            </div>
-            <button type="submit">Send</button>
-        </form>
-    </section>
-    <header class="navigation"></header>
 </div>
+
+<dialog data-modal class="modal">
+    <div class="login-modal">
+        <div class="modal-header">
+            <div></div>
+            <div data-close-modal class="close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16">
+                    <path fill="#F6557E"
+                          d="M15.1 3.1L12.9.9L8 5.9L3.1.9L.9 3.1l5 4.9l-5 4.9l2.2 2.2l4.9-5l4.9 5l2.2-2.2l-5-4.9z"/>
+                </svg>
+            </div>
+        </div>
+        <form id="login-form" class="login-form">
+            <div id="login-failed"></div>
+            <div class="email-group">
+                <label for="blogTitle" class="input-label">Title</label>
+                <label for="blogTitle"></label>
+                <input id="blogTitle" type="text" class="form-input"
+                       placeholder="Write title" autocomplete="false">
+                <small></small>
+            </div>
+            <div class="password-group">
+                <div class="email-group">
+                    <label for="articleBody" class="input-label">Content</label>
+                    <label for="articleBody">
+                                <textarea rows="4" cols="4" id="articleBody" class="contentBody"
+                                          placeholder="Write article content here !"></textarea>
+                    </label>
+                    <small></small>
+                </div>
+            </div>
+            <div class="saveButton">
+                <button class="login" id="createArticle" type="submit">Publish
+                </button>
+            </div>
+        </form>
+    </div>
+</dialog>
+
+<script>
+    const openButton = document.querySelector("[data-open-modal]")
+    const closeButton = document.querySelector("[data-close-modal]")
+    const modal = document.querySelector("[data-modal]")
+
+    openButton.addEventListener("click", () => {
+        modal.showModal()
+    })
+
+    closeButton.addEventListener("click", () => {
+        modal.close()
+    })
+</script>
+<section id="message-section">
+    <div class="main-message">
+        <div class="recent-title">All messages</div>
+        <table id="allMessagesSection">
+            <thead>
+            <td>User</td>
+            <td>Message</td>
+            <td>Status</td>
+            <td>Date</td>
+            <td colspan="2" style="text-align: center">Actions</td>
+            </thead>
+        </table>
+    </div>
+</section>
+<section id="setting-section">
+    <div class="main-header">
+        <h3>Settings</h3>
+        <h5>Edit settings,</h5>
+    </div>
+    <form class="contact-form">
+        <div class="email-input">
+            <div><label>Name</label></div>
+            <div><label>
+                <input type="text" placeholder="Your name" value="Rene MUCYO">
+            </label></div>
+        </div>
+        <div class="email-input">
+            <div><label>User name</label></div>
+            <div><label>
+                <input type="text" value="mucyorene" placeholder="example: mucyorene">
+            </label></div>
+        </div>
+        <div class="email-input">
+            <div><label>Email</label></div>
+            <div><label>
+                <input type="text" value="renemucyo1@gmail.com" placeholder="example@gmail.com">
+            </label></div>
+        </div>
+        <div class="email-input">
+            <div><label>Password</label></div>
+            <div><label>
+                <input type="password" value="mucyorene" placeholder="example@gmail.com">
+            </label></div>
+        </div>
+        <button type="submit">Send</button>
+    </form>
+</section>
+<header class="navigation"></header>
 <script>
     let totalInteraction = document.querySelector("#totalInteraction");
     let countArticles = 0;
@@ -522,7 +513,6 @@
             const response = await fetch(allMessagesUrl, options);
             if (!response.ok) {
                 console.log(response.json())
-                throw new Error('Failed to fetch articles');
             }
             const data = await response.json();
             let allMessages = data.messages;
@@ -583,31 +573,6 @@
                     <td><button style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
                     <td><button style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">Delete</button></td>
                     `
-                // messageCard.classList.add("recent-item");
-                // messageCard.style = "padding:5px"
-                // messageCard.innerHTML = `<div class="user-part">
-                //     <div class="avatar">
-                //         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 32 32">
-                //             <path fill="#707173"
-                //                   d="M16 8a5 5 0 1 0 5 5a5 5 0 0 0-5-5m0 8a3 3 0 1 1 3-3a3.003 3.003 0 0 1-3 3"/>
-                //             <path fill="#707173"
-                //                   d="M16 2a14 14 0 1 0 14 14A14.016 14.016 0 0 0 16 2m-6 24.377V25a3.003 3.003 0 0 1 3-3h6a3.003 3.003 0 0 1 3 3v1.377a11.899 11.899 0 0 1-12 0m13.993-1.451A5.002 5.002 0 0 0 19 20h-6a5.002 5.002 0 0 0-4.992 4.926a12 12 0 1 1 15.985 0"/>
-                //         </svg>
-                //     </div>
-                //     <div class="item-username">${messages[i].names}</div>
-                // </div>
-                // <div class="message-content" style="justify-content: justify">
-                //     ${messages[i].message}</div>
-                // <div class="messageStatus">${messages[i].status}</div>
-                // <div class="sentDate">${messages[i].names}</div>
-                // <div class="status">
-                //         <button onClick={} style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">
-                //             Edit
-                //         </button>
-                //         <button id="deleteItem" onClick={} style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">
-                //             Delete
-                //         </button>
-                //     </div>`
                 onRecentMessages.appendChild(messageCard)
             }
         } catch (error) {
@@ -619,7 +584,7 @@
 </script>
 
 <script>
-    const blogDiv = document.querySelector("#list-articles")
+    const blogDiv = document.querySelector(".blogs-table")
     const totalArticles = document.querySelector("#totalArticles")
     const fetchBlogs = async () => {
         try {
@@ -636,24 +601,27 @@
                     countArticles += article.comments.length;
                 });
                 totalInteraction.textContent = `${countArticles}`
-                let articles = data.articles.slice(-30)
-                for (let b in articles) {
-                    const blogCard = document.createElement("div")
-                    blogCard.classList.add("recent-item");
-                    blogCard.innerHTML = `<div class="user-part">
-                        ${articles[b].title}
-                    </div>
-                    <div class="message-content">
-                        ${articles[b].body}
-                    </div>
-                    <div class="thumbnail">
-                        <figure>
-                            <img src="../assets/assets/blog-images/blog-tech.jpg" alt="">
-                        </figure>
-                    </div>
-                    <div>
-                        10/12/21
-                    </div>`
+                let articles = data.articles.slice(-10)
+                for (let b in articles.reverse()) {
+
+                    const createdDated = new Date(articles[b].createdAt);
+                    let createdAt = `${createdDated.getFullYear()}/${createdDated.getMonth() + 1}/${createdDated.getDate()}`
+
+                    const updatedDate = new Date(articles[b].createdAt);
+                    let updatedAt = `${updatedDate.getDate()}/${updatedDate.getMonth() + 1}/${updatedDate.getFullYear()}`
+
+                    const blogCard = document.createElement("tr")
+                    blogCard.innerHTML = `
+                        <td style="text-align: justify; padding: 1rem;font-weight: bold">${articles[b].title}</td>
+                        <td style="text-align: justify">${articles[b].body}</td>
+                        <td>
+                        <img src="../assets/assets/blog-images/blog-tech.jpg" height=50 width=100 alt="">
+                        </td>
+                        <td>${createdAt}</td>
+                        <td>${updatedAt}</td>
+                        <td><button style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
+                        <td><button style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">Delete</button></td>
+                        `
                     blogDiv.appendChild(blogCard)
                 }
             }
@@ -661,15 +629,15 @@
             console.log(error)
         }
     }
-    // fetchBlogs()
+    fetchBlogs()
 </script>
 <script>
     let registerArticle = document.querySelector("#login-form")
     let feedbackMessage = document.querySelector("#login-failed")
     let createArticleButton = document.querySelector("#createArticle")
 
-    let title = document.querySelector("#articleBody")
-    let content = document.querySelector("#blogTitle")
+    let title = document.querySelector("#blogTitle")
+    let content = document.querySelector("#articleBody")
 
     registerArticle.addEventListener("submit", async (event) => {
         event.preventDefault()
@@ -700,7 +668,6 @@
                 failedMessageAlert.style = "color:red;"
                 failedMessageAlert.innerHTML = `<p>${error.message}</p>`
                 feedbackMessage.appendChild(failedMessageAlert)
-
                 console.log(`HERE IS ARTICLE NORMAL ERROR: ${error}`)
             }
             if (response.ok) {
