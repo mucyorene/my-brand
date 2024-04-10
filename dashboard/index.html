@@ -14,7 +14,6 @@
     const allMessagesUrl = `${apiUrl}/contact/messages`;
     const allArticlesApi = `${apiUrl}/articles`
     const createArticleUrl = `${apiUrl}/my-brand/blog/create`
-
 </script>
 <body>
 <div class="container">
@@ -475,6 +474,30 @@
     }
 </script>
 <script>
+    const deleteArticle = async (id) => {
+        const url = `${apiUrl}/articles/removeSingleArticle/${id}`
+        const askUser = confirm("Really want to delete this message ? there'll no undo")
+        if (askUser) {
+            const options = {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+            }
+            const deleteResponse = await fetch(url, options)
+            if (!deleteResponse.ok) {
+                const deleteError = await deleteResponse.json()
+                console.log(deleteError)
+            }
+            if (deleteResponse.ok) {
+                const data = await deleteResponse.json()
+                console.log(data.message)
+                toastMethod(data.message)
+            }
+        }
+    }
+
     async function deleteMessage(id) {
         const deleteApi = `https://my-brand-api-t81n.onrender.com/contact/removeContactMessage/${id}`
         const askUser = confirm("Really want to delete this message ?")
@@ -613,7 +636,7 @@
                         <td>${createdAt}</td>
                         <td>${updatedAt}</td>
                         <td><button style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
-                        <td><button style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">Delete</button></td>
+                        <td><button onClick="deleteArticle('${articles[b]._id}')" style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">Delete</button></td>
                         `
                     blogDiv.appendChild(blogCard)
                 }
@@ -686,14 +709,13 @@
         Toastify({
             text: message,
             duration: 3000,
-            destination: "https://github.com/apvarun/toastify-js",
             newWindow: true,
             close: true,
             gravity: "top", // `top` or `bottom`
             position: "right", // `left`, `center` or `right`
             stopOnFocus: true, // Prevents dismissing of toast on hover
             style: {
-                // background: "linear-gradient(to right, #00b09b, #96c93d)",
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
             },
             onClick: function () {
             } // Callback after click
