@@ -190,7 +190,13 @@ header {
     gap: 10px;
 }
 
+
 .main .main-message .recent-title {
+    color: #707173;
+    font-size: 20px;
+}
+
+.recent-title {
     color: #707173;
     font-size: 20px;
 }
@@ -204,6 +210,28 @@ header {
     gap: 10px;
     justify-content: space-between;
     padding: 20px;
+}
+
+.message-table thead {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #F89876;
+    text-align: center;
+}
+
+.blogs-table thead {
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #F89876;
+    text-align: center;
+}
+
+.message-table tr {
+    text-align: center;
+}
+
+.blogs-table tr {
+    text-align: center;
 }
 
 .main .main-message .recent-message .recent-item {

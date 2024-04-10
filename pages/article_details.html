@@ -14,6 +14,7 @@
     </script>
 </head>
 <body>
+
 <main class="article-container">
     <nav class="navigation">
         <label class="logo">
@@ -29,6 +30,7 @@
         </ul>
     </nav>
     <article class="article-page"></article>
+    <div class="loadingArticle" style="text-align:center;padding: 3em"></div>
     <section class="comments"></section>
     <section id="contact-section" class="contact-section">
         <div class="contact-section-form">
@@ -37,6 +39,7 @@
                 <div class="border-bottom"></div>
             </div>
             <form class="contact-form">
+                <div class="comment-feedback"></div>
                 <div class="email-input">
                     <div><label for="names">Names</label></div>
                     <div><input type="text" id="names"></div>
@@ -49,16 +52,31 @@
                     <div><label for="contentBody">Comment</label></div>
                     <div><textarea name="message" id="contentBody" cols="30" rows="10"></textarea></div>
                 </div>
-                <button type="submit">Send</button>
+                <button type="submit" id="commentSubmit">Send</button>
             </form>
         </div>
     </section>
-    <script>
-        const articleSection = document.querySelector(".article-page")
-        const commentSection = document.querySelector(".comments")
-        const fetchSingleArticle = async () => {
+</main>
+</body>
+<script>
+    const articleSection = document.querySelector(".article-page")
+    const commentSection = document.querySelector(".comments")
+    const commentForm = document.querySelector("#contact-section")
+    const loading = document.querySelector(".loadingArticle")
+    commentForm.style = "display:none"
+    const fetchSingleArticle = async () => {
+
+        try {
+            loading.textContent = "Waiting..."
             const response = await fetch(apiUrl)
-            try {
+            if (!response.ok) {
+                const data = await response.json()
+                loading.style = "display:flex"
+                loading.textContent = `${data.message}`
+            }
+            if (response.ok) {
+                loading.style = "display:none;"
+                commentForm.style = "display:flex"
                 const data = await response.json()
                 const article = data.article;
                 const articleCome = data.article.comments.reverse();
@@ -101,73 +119,89 @@
                     commentSection.appendChild(commentatorCard)
                     commentSection.appendChild(commentCard)
                 }
-            } catch (error) {
-                console.log(error)
             }
+        } catch (error) {
+            loading.style = "display:flex"
+            loading.textContent = `${error.message}`
+            console.log(error)
         }
-        fetchSingleArticle()
-    </script>
+    }
+    fetchSingleArticle()
+</script>
+<script>
+    let commentButton = document.querySelector(".contact-form")
+    let commentatorNames = document.querySelector("#names")
+    let commentatorEmail = document.querySelector("#email")
+    let commentatorContent = document.querySelector("#contentBody")
+    let commentFeedback = document.querySelector(".comment-feedback")
+    let submitComment = document.querySelector("#commentSubmit")
 
-    <script>
-        let commentButton = document.querySelector(".comment-form")
-        let commentatorNames = document.querySelector("#names")
-        let commentatorEmail = document.querySelector("#email")
-        let commentatorContent = document.querySelector("#content")
-        commentButton.addEventListener("submit", async function (e) {
-            e.preventDefault()
-            const comment = {
-                "names": commentatorNames.value,
-                "email": commentatorEmail.value,
-                "content": commentatorContent.value
-            }
-            const options = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    // "Authorization": `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify(comment)
-            }
+    commentButton.addEventListener("submit", async function (e) {
+        submitComment.textContent = "Loading..."
+        e.preventDefault()
 
-            try {
-                const response = await fetch(createCommentApi, options)
-                if (!response.ok) {
-                    const error = await response.json()
-                    console.log(`HERE IS DATA: ${error}`)
-                }
-                if (response.ok) {
-                    const data = await response.json()
-                    window.location.reload()
-                    console.log(`HERE IS MESSAGE: ${data.message}`)
-                }
-            } catch (e) {
-                console.log(`Error during comment create: ${e}`)
-            }
+        const comment = {
+            "names": commentatorNames.value,
+            "email": commentatorEmail.value,
+            "content": commentatorContent.value
+        }
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                // "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(comment)
+        }
 
-            // const isFormValid = checkLoginEmail() && checkPassword()
-            // if (isFormValid) {
-            //     try {
-            //         if (response.ok) {
-            //             const data = await response.json()
-            //             console.log(data.token)
-            //             localStorage.setItem("token", data.token)
-            //             window.location = "https://deploy-preview-2--rene-mucyo-brand.netlify.app/dashboard/index.html"
-            //         }
-            //     } catch (error) {
-            //         console.log("")
-            //     }
-            //     // const myCredentials = window.localStorage.getItem("user")
-            //     // const auth = JSON.parse(myCredentials)
-            //     // if (auth["email"] === username.value && auth["password"] === password.value) {
-            //     //     window.location = "http://localhost:63343/my-brand/dashboard/index.html"
-            //     // } else {
-            //     //     const notMatch = document.querySelector("#login-failed")
-            //     //     notMatch.style.color = "red"
-            //     //     notMatch.textContent = "We have not that credentials in database"
-            //     // }
-            // }
-        })
-    </script>
-</main>
-</body>
+        try {
+            const response = await fetch(createCommentApi, options)
+            if (!response.ok) {
+
+                submitComment.textContent = "Send"
+                commentFeedback.textContent = ""
+                const error = await response.json()
+                commentFeedback.style = "color:red;align:center;padding:1rem;"
+                commentFeedback.textContent = `${error.message}`
+                console.log(`HERE IS DATA: ${error}`)
+            }
+            if (response.ok) {
+                submitComment.textContent = "Send"
+                commentFeedback.textContent = ""
+                commentButton.reset()
+                commentFeedback.style = "color:green;align:center;padding:1rem;"
+                const data = await response.json()
+                commentFeedback.textContent = `${data.message}`
+            }
+        } catch (error) {
+            submitComment.textContent = "Send"
+            commentFeedback.style = "color:red;align:center;padding:1rem;"
+            commentFeedback.textContent = `${error.message}`
+            console.log(`Error during comment create: ${e}`)
+        }
+
+        // const isFormValid = checkLoginEmail() && checkPassword()
+        // if (isFormValid) {
+        //     try {
+        //         if (response.ok) {
+        //             const data = await response.json()
+        //             console.log(data.token)
+        //             localStorage.setItem("token", data.token)
+        //             window.location = "https://deploy-preview-2--rene-mucyo-brand.netlify.app/dashboard/index.html"
+        //         }
+        //     } catch (error) {
+        //         console.log("")
+        //     }
+        //     // const myCredentials = window.localStorage.getItem("user")
+        //     // const auth = JSON.parse(myCredentials)
+        //     // if (auth["email"] === username.value && auth["password"] === password.value) {
+        //     //     window.location = "http://localhost:63343/my-brand/dashboard/index.html"
+        //     // } else {
+        //     //     const notMatch = document.querySelector("#login-failed")
+        //     //     notMatch.style.color = "red"
+        //     //     notMatch.textContent = "We have not that credentials in database"
+        //     // }
+        // }
+    })
+</script>
 </html>
