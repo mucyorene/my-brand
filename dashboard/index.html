@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>MY BRAND - Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <script>
     const token = localStorage.getItem("token");
@@ -492,8 +493,7 @@
             }
             if (deleteResponse.ok) {
                 const data = await deleteResponse.json()
-                alert(`${data.messages}`)
-                window.location.reload()
+                toastMethod(data.messages)
                 console.log(data.messages)
             }
         }
@@ -679,6 +679,26 @@
             console.log(`Error here in article create: ${error}`)
         }
     })
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+    function toastMethod(message) {
+        Toastify({
+            text: message,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                // background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+            onClick: function () {
+            } // Callback after click
+        }).showToast();
+    }
 </script>
 </body>
 </html>

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RM Brand</title>
     <link rel="stylesheet" href="styles/home_page.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <script>
         const apiUrl = "https://my-brand-api-t81n.onrender.com/articles"
     </script>
@@ -447,6 +449,7 @@
                         let successMessageAlert = document.createElement("div")
                         successMessageAlert.classList.add("success")
                         successMessageAlert.style = "color:green;"
+                        toastMethod(data.message)
                         successMessageAlert.innerHTML = `<p>${data.message}</p>`
                         form.reset()
                         successMessage.appendChild(successMessageAlert)
@@ -609,4 +612,24 @@
     </script>
 </main>
 </body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+    function toastMethod(message) {
+        Toastify({
+            text: message,
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background:"color:red;"
+                // background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+            onClick: function () {
+            } // Callback after click
+        }).showToast();
+    }
+</script>
 </html>
