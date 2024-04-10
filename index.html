@@ -6,7 +6,6 @@
     <title>RM Brand</title>
     <link rel="stylesheet" href="styles/home_page.css">
     <script>
-        import "toastify-js/src/toastify.css"
         const apiUrl = "https://my-brand-api-t81n.onrender.com/articles"
     </script>
 </head>
@@ -472,7 +471,10 @@
 
         let username = document.querySelector("#emailD")
         let password = document.querySelector("#password")
-        let loginButton = document.querySelector("#login-form")
+        let loginFormSubmit = document.querySelector("#login-form")
+        let loginButton = document.querySelector("#loginButton")
+        let loginFeedback = document.querySelector("#login-failed")
+
         const isPasswordSecure = (password) => {
             const re = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/);
             return re.test(password);
@@ -500,10 +502,11 @@
             return valid
         }
 
-        loginButton.addEventListener("submit", async function (e) {
+        loginFormSubmit.addEventListener("submit", async function (e) {
             e.preventDefault()
             const isFormValid = checkLoginEmail() && checkPassword()
             if (isFormValid) {
+                loginButton.textContent = "Loading..."
                 const credentials = {
                     "email": username.value,
                     "password": password.value
@@ -521,16 +524,24 @@
                 try {
                     const response = await fetch(url, options)
                     if (!response.ok) {
+                        loginButton.textContent = "Sign in"
+                        loginFeedback.textContent = ""
                         const error = await response.json()
-                        console.log(`HERE IS DATA: ${error}`)
+                        loginFeedback.style.color = "red"
+                        loginFeedback.textContent = `${error.message}`
                     }
                     if (response.ok) {
+                        loginButton.textContent = "Sign in"
+                        loginFeedback.textContent = ""
                         const data = await response.json()
                         console.log(data.token)
                         localStorage.setItem("token", data.token)
                         window.location = "https://deploy-preview-2--rene-mucyo-brand.netlify.app/dashboard/index.html"
                     }
                 } catch (error) {
+                    loginButton.textContent = "Sign in"
+                    loginFeedback.textContent = ""
+                    loginFeedback.textContent = `${error.message}`
                     console.log("")
                 }
                 // const myCredentials = window.localStorage.getItem("user")
