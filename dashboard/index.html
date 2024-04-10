@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <title>MY BRAND - Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
-    <style>
-
-    </style>
 </head>
 <script>
     const token = localStorage.getItem("token");
     const credential = JSON.parse(window.localStorage.getItem("user"))
     const comments = JSON.parse(window.localStorage.getItem("comments"));
     const apiUrl = "https://my-brand-api-t81n.onrender.com"
-    const allMessagesUrl = "https://my-brand-api-t81n.onrender.com/contact/messages";
-    const allArticlesApi = "https://my-brand-api-t81n.onrender.com/articles"
-    const createArticleUrl = "https://my-brand-api-t81n.onrender.com/my-brand/blog/create"
+    const allMessagesUrl = `${apiUrl}/contact/messages`;
+    const allArticlesApi = `${apiUrl}/articles`
+    const createArticleUrl = `${apiUrl}/my-brand/blog/create`
+
 </script>
 <body>
 <div class="container">
@@ -118,31 +116,11 @@
         <div class="cards">
             <div class="visits-card">
                 <div class="card-title">
-                    <div>Profile views</div>
-                </div>
-                <div class="card-body">
-                    <div class="card-subtitle">
-                        <div class="number">24</div>
-                    </div>
-                    <div class="stats-graph">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 2048 2048">
-                            <path fill="#5FEF5C"
-                                  d="m1453 499l-90 90l-338-337l-1 1796H896l1-1799l-340 340l-90-90L960 6z"/>
-                        </svg>
-                        5 visits
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div>vs previous 30 days</div>
-                </div>
-            </div>
-            <div class="visits-card">
-                <div class="card-title">
                     <div>Page interaction</div>
                 </div>
                 <div class="card-body">
                     <div class="card-subtitle">
-                        <div class="number">215</div>
+                        <div class="number" id="totalInteraction"></div>
                     </div>
                     <div class="stats-graph-down">
                         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 2048 2048">
@@ -162,7 +140,7 @@
                 </div>
                 <div class="card-body">
                     <div class="card-subtitle">
-                        <div class="number">12</div>
+                        <div id="totalArticles" class="number"></div>
                     </div>
                     <div class="stats-graph">
                         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 2048 2048">
@@ -182,9 +160,7 @@
                 </div>
                 <div class="card-body">
                     <div class="card-subtitle">
-                        <div class="number">
-                            <script>comments != null ? document.write(comments.length) : document.write("0")</script>
-                        </div>
+                        <div id="totalMessages" class="number"></div>
                     </div>
                     <div class="stats-graph-down">
                         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 2048 2048">
@@ -192,6 +168,26 @@
                                   d="m1965 1101l-941 941l-941-941l90-90l787 787V0h128v1798l787-787z"/>
                         </svg>
                         1 messages
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div>vs previous 30 days</div>
+                </div>
+            </div>
+            <div class="visits-card">
+                <div class="card-title">
+                    <div>Profile views</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-subtitle">
+                        <div class="number">24</div>
+                    </div>
+                    <div class="stats-graph">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 2048 2048">
+                            <path fill="#5FEF5C"
+                                  d="m1453 499l-90 90l-338-337l-1 1796H896l1-1799l-340 340l-90-90L960 6z"/>
+                        </svg>
+                        5 visits
                     </div>
                 </div>
                 <div class="card-footer">
@@ -484,6 +480,8 @@
     <header class="navigation"></header>
 </div>
 <script>
+    let totalInteraction = document.querySelector("#totalInteraction");
+    let countArticles = 0;
     const showErrors = (input, message) => {
         const parent = input.parentElement
         parent.classList.add("error")
@@ -509,7 +507,6 @@
     }
 </script>
 <script>
-
     function deleteMessage(id) {
         console.log(id)
         return id;
@@ -534,6 +531,7 @@
 <script>
     const onRecentMessages = document.querySelector("#onRecent")
     const onRecentAllMessages = document.querySelector("#onRecent2")
+    const totalMessages = document.querySelector("#totalMessages")
 
     // Function to fetch articles from the API
     async function fetchMessages() {
@@ -552,8 +550,9 @@
             }
             const data = await response.json();
             let allMessages = data.messages;
-            totalMessage = allMessages;
-            console.log(`HERE ARE MESSAGES: ${allMessages.length}`)
+            totalMessages.textContent = `${allMessages.length}`
+            countArticles += allMessages.length;
+            totalInteraction.textContent = countArticles
             let messages = data.messages.slice(-3).reverse()
             for (let a in allMessages) {
                 const allMessageCard = document.createElement("div")
@@ -625,14 +624,27 @@
 
 <script>
     const blogDiv = document.querySelector("#list-articles")
+    const totalArticles = document.querySelector("#totalArticles")
     const fetchBlogs = async () => {
-        const response = await fetch(allArticlesApi)
-        const data = await response.json()
-        let articles = data.articles.slice(-30)
-        for (let b in articles) {
-            const blogCard = document.createElement("div")
-            blogCard.classList.add("recent-item");
-            blogCard.innerHTML = `<div class="user-part">
+        try {
+            const response = await fetch(allArticlesApi)
+            if (!response.ok) {
+                const errors = response.json()
+                console.log(errors)
+            }
+            if (response.ok) {
+                const data = await response.json()
+                totalArticles.textContent = data.articles.length;
+                let totalArts = data.articles;
+                totalArts.forEach(article => {
+                    countArticles += article.comments.length;
+                });
+                totalInteraction.textContent = `${countArticles}`
+                let articles = data.articles.slice(-30)
+                for (let b in articles) {
+                    const blogCard = document.createElement("div")
+                    blogCard.classList.add("recent-item");
+                    blogCard.innerHTML = `<div class="user-part">
                         ${articles[b].title}
                     </div>
                     <div class="message-content">
@@ -646,7 +658,11 @@
                     <div>
                         10/12/21
                     </div>`
-            blogDiv.appendChild(blogCard)
+                    blogDiv.appendChild(blogCard)
+                }
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
     fetchBlogs()
