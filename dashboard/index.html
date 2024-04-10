@@ -474,9 +474,29 @@
     }
 </script>
 <script>
-    function deleteMessage(id) {
-        console.log(id)
-        return id;
+    async function deleteMessage(id) {
+        const deleteApi = `https://my-brand-api-t81n.onrender.com/contact/removeContactMessage/${id}`
+        const askUser = confirm("Really want to delete this message ?")
+        if (askUser) {
+            const options = {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+            }
+            const deleteResponse = await fetch(deleteApi, options)
+            if (!deleteResponse.ok) {
+                const deleteError = await deleteResponse.json()
+                console.log(deleteError)
+            }
+            if (deleteResponse.ok) {
+                const data = await deleteResponse.json()
+                alert(`${data.messages}`)
+                window.location.reload()
+                console.log(data.messages)
+            }
+        }
     }
 
     function editStatusFunc(id) {
@@ -529,8 +549,8 @@
                     <td>${allMessages[a].message}</td>
                     <td>${allMessages[a].status}</td>
                     <td>${date}</td>
-                    <td><button style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
-                    <td><button style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">Delete</button></td>
+                    <td><button onClick="deleteMessage('${allMessages[a]._id}')" style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
+                    <td><button onClick="deleteMessage('${allMessages[a]._id}')" style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">Delete</button></td>
                     `
                 // allMessageCard.classList.add("recent-item");
                 // allMessageCard.style = "padding:5px; display:flex;"
