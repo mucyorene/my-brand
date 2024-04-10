@@ -206,6 +206,17 @@ header {
     padding: 20px;
 }
 
+.message-table thead {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #F89876;
+    text-align: center;
+}
+
+.message-table tr {
+    text-align: center;
+}
+
 .main .main-message .recent-message .recent-item {
     display: flex;
     gap: 20px;
