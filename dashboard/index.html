@@ -8,6 +8,9 @@
 </head>
 <script>
     const token = localStorage.getItem("token");
+    if (!token) {
+        window.location = "../index.html"
+    }
     const credential = JSON.parse(window.localStorage.getItem("user"))
     const comments = JSON.parse(window.localStorage.getItem("comments"));
     const apiUrl = "https://my-brand-api-t81n.onrender.com"
@@ -100,7 +103,7 @@
                         </svg>
                     </div>
                     <div>
-                        <a href="../index.html">Logout</a>
+                        <a onclick="logoutLocalStorage()">Logout</a>
                     </div>
                 </div>
             </div>
@@ -646,6 +649,12 @@
         }
     }
     fetchBlogs()
+</script>
+<script>
+    const logoutLocalStorage = () => {
+        localStorage.removeItem("token")
+
+    }
 </script>
 <script>
     let registerArticle = document.querySelector("#login-form")
