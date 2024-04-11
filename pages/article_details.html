@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Article details</title>
     <link rel="stylesheet" href="../styles/home_page.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <meta name="viewport" content="width=device-width, init-scale=1.0">
     <script>
         const currentUrl = window.location.href;
@@ -59,6 +60,33 @@
 </main>
 </body>
 <script>
+    async function deleteComment(id) {
+        const deleteApi = `https://my-brand-api-t81n.onrender.com/comments/removeComment/${id}`
+        const askUser = confirm("Really want to delete this comment ?")
+        if (askUser) {
+            const options = {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+            }
+            const deleteResponse = await fetch(deleteApi, options)
+            if (!deleteResponse.ok) {
+                const deleteError = await deleteResponse.json()
+                console.log(deleteError)
+            }
+            if (deleteResponse.ok) {
+                const data = await deleteResponse.json()
+                toastMethod(data.message)
+                console.log(data.message)
+            }
+        }
+    }
+</script>
+<script>
+
+    const token = localStorage.getItem("token");
     const articleSection = document.querySelector(".article-page")
     const commentSection = document.querySelector(".comments")
     const commentForm = document.querySelector("#contact-section")
@@ -115,9 +143,16 @@
                     commentatorCard.innerHTML = `${articleCome[i].names}`
                     commentCard.innerHTML = `${articleCome[i].content}`
 
+                    const actionSection = document.createElement("div")
+                    actionSection.style = "display:block;margin-bottom:1rem;"
+                    actionSection.innerHTML = `<button onClick="deleteComment('${articleCome[i]._id}')" style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">Delete</button>`
+
                     //Comments
                     commentSection.appendChild(commentatorCard)
                     commentSection.appendChild(commentCard)
+                    if (token) {
+                        commentSection.appendChild(actionSection)
+                    }
                 }
             }
         } catch (error) {
@@ -203,5 +238,25 @@
         //     // }
         // }
     })
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+    function toastMethod(message) {
+        Toastify({
+            text: message,
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "color:red;"
+                // background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+            onClick: function () {
+            } // Callback after click
+        }).showToast();
+    }
 </script>
 </html>
