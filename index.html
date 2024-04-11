@@ -538,7 +538,7 @@
                         const data = await response.json()
                         console.log(data.token)
                         localStorage.setItem("token", data.token)
-                        window.location = "/dashboard/index.html"
+                        window.location = "dashboard/index.html"
                     }
                 } catch (error) {
                     loginButton.textContent = "Sign in"
