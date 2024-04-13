@@ -377,6 +377,8 @@
             error.textContent = message
         }
 
+
+
         const checkNames = () => {
             let valid = false
             let nameValue = name.value;
@@ -585,7 +587,7 @@
                         blogCard.innerHTML = `
                 <div class="blog-section-item-thumbnail">
                         <figure>
-                            <img src="assets/assets/blog-images/blogImage.jpg" alt=""/>
+                            <img src="${lastTwoArticles[i].thumbnail}" alt="No image yet"/>
                         </figure>
                     </div>
                     <div class="blog-section-article-title">

@@ -120,11 +120,7 @@
 
                 titleCard.innerHTML = `${article.title}`
                 bodyCard.innerHTML = `${article.body}`
-                thumbCard.innerHTML = "<div>\n" +
-                    "            <figure>\n" +
-                    "                <img src=\"../assets/projectThumb.jpeg\" class=\"thumbnail\" alt=\"\">\n" +
-                    "            </figure>\n" +
-                    "        </div>"
+                thumbCard.innerHTML = `<div style="margin: auto;width: 60%;padding: 10px;"><figure><img src="${article.thumbnail}" class="" height="40%" width="70%" alt=""></figure></div>`
 
                 //Articles
 
@@ -153,6 +149,7 @@
                     if (token) {
                         commentSection.appendChild(actionSection)
                     }
+                    console.log(commentSection)
                 }
             }
         } catch (error) {
@@ -241,6 +238,14 @@
 </script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script>
+    function updateDiv() {
+
+        const container = document.querySelector(".comments");
+        let content = container.innerHTML;
+        container.innerHTML = content;
+        console.log("REFRESHED")
+    }
+
     function toastMethod(message) {
         Toastify({
             text: message,

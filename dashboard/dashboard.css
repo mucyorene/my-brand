@@ -607,7 +607,7 @@ dialog::backdrop {
 dialog {
     border: none;
     border-radius: 10px;
-    height: 50%;
+    height: 60%;
     width: 60%;
     background: #FFFFFF;
 }
