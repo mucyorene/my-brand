@@ -320,8 +320,9 @@
                 </svg>
             </div>
         </div>
-        <form id="update-form" class="login-form"
+        <form id="update-form" method="POST" class="login-form"
               enctype="multipart/form-data">
+            <input id="formArticleId" type="hidden">
             <div id="update-feedback"></div>
             <div class="email-group">
                 <label for="blogTitle" class="input-label">Title</label>
@@ -348,8 +349,7 @@
                 <small></small>
             </div>
             <div class="saveButton">
-                <button class="login" id="updateArticle" type="submit">Update
-                </button>
+                <button class="login" id="updateArticle" type="submit">Update</button>
             </div>
         </form>
     </div>
@@ -420,13 +420,22 @@
         }
     }
 
-    const openDialog = (article) => {
-        console.log(typeof article[title])
+    const openDialog = (id, title, body, thumbnail) => {
+        let articleId = decodeURIComponent(id);
+        let articleTitle = decodeURIComponent(title);
+        let articleBody = decodeURIComponent(body);
+        let articleThumb = decodeURIComponent(thumbnail);
+
         // Assuming you have a dialog element with an ID of "updateDialog"
         const dialog = document.getElementById("updateDialog");
         const closeButtonUpdate = document.querySelector("#closeUpdateDialog")
         const updateTitle = document.getElementById("blogUpdateTitle")
         const updateBody = document.getElementById("articleUpdateBody")
+        const articleIdForm = document.getElementById("formArticleId")
+
+        updateTitle.value = articleTitle
+        updateBody.value = articleBody
+        articleIdForm.value = articleId
 
         if (dialog) {
             dialog.showModal(); // This opens the dialog
@@ -481,6 +490,46 @@
             let status = comments[indexToUpdate].status
         }
     }
+</script>
+<script>
+    const updateForm = document.getElementById("update-form")
+    const updateTitle = document.getElementById("blogUpdateTitle")
+    const updateBody = document.getElementById("articleUpdateBody")
+    const updateThumb = document.getElementById("update-thumbnail")
+    const id = document.getElementById("formArticleId")
+    updateForm.addEventListener("submit", async (event) => {
+        event.preventDefault()
+
+        const article = {
+            "title": updateTitle.value,
+            "body": updateBody.value,
+            "thumbnail": "updateThumb.files[0]"
+        }
+        const options = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(article)
+        }
+
+        try {
+            const editArticleUrl = `${apiUrl}/articles/editBlogArticle/${id.value}`
+            const response = await fetch(editArticleUrl, options)
+            if (!response.ok) {
+                const errorNormal = await response.json()
+                console.log(`Error in update: ${errorNormal.data}`)
+            }
+            if (response.ok) {
+                const res = await response.json()
+                console.log(`Error in update: ${res.data}`)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+    })
 </script>
 <script>
     const onRecentMessages = document.querySelector(".message-table")
@@ -566,8 +615,16 @@
                     const createdDated = new Date(articles[b].createdAt);
                     let createdAt = `${createdDated.getFullYear()}/${createdDated.getMonth() + 1}/${createdDated.getDate()}`
 
-                    const updatedDate = new Date(articles[b].createdAt);
+                    const updatedDate = new Date(articles[b].updatedAt);
                     let updatedAt = `${updatedDate.getDate()}/${updatedDate.getMonth() + 1}/${updatedDate.getFullYear()}`
+
+                    const title = articles[b].title;
+                    const bodyContent = articles[b].body;
+                    const thumbnailUrl = articles[b].thumbnail;
+
+                    const encodedTitle = title.replace(/'/g, '%27').replace(/"/g, '%22');
+                    const encodedBody = bodyContent.replace(/'/g, '%27').replace(/"/g, '%22');
+                    const encodedThumbnailUrl = thumbnailUrl.replace(/'/g, '%27').replace(/"/g, '%22');
 
                     const blogCard = document.createElement("tr")
                     blogCard.innerHTML = `
@@ -578,7 +635,7 @@
                         </td>
                         <td>${createdAt}</td>
                         <td>${updatedAt}</td>
-                        <td><button onclick="openDialog('${articles[b]}')" data-update-model id="updateArticleDialog" style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
+                        <td><button onclick="openDialog('${encodeURIComponent(articles[b]._id)}', '${encodedTitle}','${encodedBody}', '${encodedThumbnailUrl}')" data-update-model id="updateArticleDialog" style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
                         <td><button onClick="deleteArticle('${articles[b]._id}')" style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">Delete</button></td>
                         `
                     blogDiv.appendChild(blogCard)
@@ -617,7 +674,7 @@
         const article = {
             "title": title.value,
             "body": content.value,
-            "thumbnail": image
+            "thumbnail": image.files[0]
         }
         const options = {
             method: "POST",
@@ -627,7 +684,6 @@
             },
             body: JSON.stringify(article)
         }
-
         try {
             const response = await fetch(createArticleUrl, options)
             if (!response.ok) {
