@@ -202,7 +202,7 @@
         <div class="recent-title">Articles</div>
         <div class="main-message">
             <div class="add-button">
-                <a id="articleRegisterModel" data-open-modal class="add-project">New blog</a>
+                <a style="cursor: pointer" id="articleRegisterModel" data-open-modal class="add-project">New blog</a>
             </div>
             <table class="blogs-table">
                 <thead>
@@ -475,19 +475,35 @@
         }
     }
 
-    function editStatusFunc(id) {
-        let indexToUpdate = comments.findIndex((obj) => obj.id === id)
-        let currentStatus = comments[indexToUpdate].status;
-        if (indexToUpdate !== -1) {
-            comments[indexToUpdate].status = prompt("Write new status:")
-            if (comments[indexToUpdate].status === null) {
-                comments[indexToUpdate].status = currentStatus
-            } else {
-                localStorage.setItem('comments', JSON.stringify(comments));
-                window.location.reload()
+    const editStatusFunc = async (id) => {
+        const updateApi = `https://my-brand-api-t81n.onrender.com/contact/updateMessage/${id}`
+        try {
+            const statusValue = prompt("Write new status ?")
+            if (statusValue) {
+                const status = {
+                    status: statusValue
+                }
+                const options = {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify(status)
+                }
+                const deleteResponse = await fetch(updateApi, options)
+                if (!deleteResponse.ok) {
+                    const deleteError = await deleteResponse.json()
+                    console.log(deleteError)
+                }
+                if (deleteResponse.ok) {
+                    const data = await deleteResponse.json()
+                    toastMethod(data.messages)
+                    console.log(data.messages)
+                }
             }
-        } else {
-            let status = comments[indexToUpdate].status
+        } catch (error) {
+            console.log(error)
         }
     }
 </script>
@@ -496,10 +512,15 @@
     const updateTitle = document.getElementById("blogUpdateTitle")
     const updateBody = document.getElementById("articleUpdateBody")
     const updateThumb = document.getElementById("update-thumbnail")
+
+    let updateArticleButton = document.querySelector("#updateArticle")
+
+    const updateFeedForm = document.getElementById("update-feedback")
+
     const id = document.getElementById("formArticleId")
     updateForm.addEventListener("submit", async (event) => {
         event.preventDefault()
-
+        updateArticleButton.textContent = "Loading..."
         const article = {
             "title": updateTitle.value,
             "body": updateBody.value,
@@ -518,14 +539,22 @@
             const editArticleUrl = `${apiUrl}/articles/editBlogArticle/${id.value}`
             const response = await fetch(editArticleUrl, options)
             if (!response.ok) {
+                updateArticleButton.textContent = "Update"
                 const errorNormal = await response.json()
+                updateFeedForm.style = "color:red;"
+                updateFeedForm.textContent = `${errorNormal.data}`
                 console.log(`Error in update: ${errorNormal.data}`)
             }
             if (response.ok) {
+                updateArticleButton.textContent = "Update"
+                updateFeedForm.textContent = ""
                 const res = await response.json()
+                updateFeedForm.style = "color:green;"
+                updateFeedForm.textContent = `${res.data}`
                 console.log(`Error in update: ${res.data}`)
             }
         } catch (error) {
+            updateArticleButton.textContent = "Update"
             console.log(error)
         }
 
@@ -565,7 +594,7 @@
                     <td>${allMessages[a].message}</td>
                     <td>${allMessages[a].status}</td>
                     <td>${date}</td>
-                    <td><button style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
+                    <td><button onclick="editStatusFunc('${allMessages[a]._id}')" style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
                     <td><button onClick="deleteMessage('${allMessages[a]._id}')" style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">Delete</button></td>
                     `
                 onRecentAllMessages.appendChild(allMessageCard)
@@ -579,7 +608,7 @@
                     <td style="text-align: justify; padding: 5px">${messages[i].message}</td>
                     <td>${messages[i].status}</td>
                     <td>${date}</td>
-                    <td><button style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
+                    <td><button onclick="editStatusFunc('${messages[i]._id}')" style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
                     <td><button onClick="deleteMessage('${messages[i]._id}')" style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">Delete</button></td>
                     `
                 onRecentMessages.appendChild(messageCard)
@@ -635,7 +664,7 @@
                         </td>
                         <td>${createdAt}</td>
                         <td>${updatedAt}</td>
-                        <td><button onclick="openDialog('${encodeURIComponent(articles[b]._id)}', '${encodedTitle}','${encodedBody}', '${encodedThumbnailUrl}')" data-update-model id="updateArticleDialog" style="color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
+                        <td><button onclick="openDialog('${encodeURIComponent(articles[b]._id)}', '${encodedTitle}','${encodedBody}', '${encodedThumbnailUrl}')" data-update-model id="updateArticleDialog" style="cursor: pointer;color:white;background: green;border: none;border-radius: 5px;padding: .4rem .5rem">Update</button></td>
                         <td><button onClick="deleteArticle('${articles[b]._id}')" style="color:white;background: red;border: none;border-radius: 5px;padding: .4rem .5rem">Delete</button></td>
                         `
                     blogDiv.appendChild(blogCard)
