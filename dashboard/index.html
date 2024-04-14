@@ -299,7 +299,8 @@
             <div class="email-group">
                 <label for="blogTitle" class="input-label">Thumbnail</label>
                 <label for="blogTitle"></label>
-                <input id="thumbnail" type="file" name="thumbnail" class="form-input" autocomplete="false">
+                <input id="createArticleThumbnail" type="file" accept="image/*" class="form-input"
+                       autocomplete="false">
                 <small></small>
             </div>
             <div class="saveButton">
@@ -520,6 +521,19 @@
     const id = document.getElementById("formArticleId")
     updateForm.addEventListener("submit", async (event) => {
         event.preventDefault()
+
+        if (!updateThumb.files[0]) {
+            updateArticleButton.textContent = "Update"
+            updateFeedForm.textContent = 'Please select a thumbnail image.';
+            return;
+        }
+
+        const formData = new FormData()
+        formData.append('title', updateTitle.value)
+        formData.append('body', updateBody.value)
+        formData.append('thumbnail', updateThumb.files[0])
+
+
         updateArticleButton.textContent = "Loading..."
         const article = {
             "title": updateTitle.value,
@@ -529,10 +543,9 @@
         const options = {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            body: JSON.stringify(article)
+            body: formData
         }
 
         try {
@@ -689,29 +702,34 @@
 
     let title = document.querySelector("#blogTitle")
     let content = document.querySelector("#articleBody")
-    let image = document.querySelector("#thumbnail")
+    let imageThumb = document.getElementById("createArticleThumbnail")
 
     registerArticle.addEventListener("submit", async (event) => {
         event.preventDefault()
-
-        console.log(image.value)
-        if (!image) {
-            console.log('Please select a file to upload.');
+        createArticleButton.innerHTML = "Loading..."
+        if (!imageThumb.files[0]) {
+            console.log(imageThumb)
+            createArticleButton.innerHTML = "Publish"
+            feedbackMessage.textContent = 'Please select a thumbnail image.';
             return;
         }
-        createArticleButton.innerHTML = "Loading..."
+        const formData = new FormData()
+        formData.append('title', title.value)
+        formData.append('body', content.value)
+        formData.append('thumbnail', imageThumb.files[0])
+
         const article = {
             "title": title.value,
             "body": content.value,
-            "thumbnail": image.files[0]
+            "thumbnail": imageThumb.files[0]
         }
+        console.log(formData.get("thumbnail"))
         const options = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            body: JSON.stringify(article)
+            body: formData
         }
         try {
             const response = await fetch(createArticleUrl, options)
@@ -739,7 +757,7 @@
             }
         } catch (error) {
             createArticleButton.innerHTML = "Publish"
-            console.log(`Error here in article create: ${error}`)
+            console.log(`Error here in article create: ${error.error}`)
         }
     })
 </script>
